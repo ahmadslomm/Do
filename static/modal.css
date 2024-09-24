@@ -1,0 +1,129 @@
+/* Стили для модального окна */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999; /* Очень высокий z-index, чтобы перекрыть все элементы */
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 65%; /* Занимает половину экрана */
+    background-color: rgba(0, 0, 0, 0.7); /* Черный фон с легкой прозрачностью */
+    display: flex;
+    justify-content: center;
+    border-radius: 25px 25px 0 0; /* Закругленные углы сверху */
+    align-items: flex-start; /* Выравнивание по началу */
+    padding-top: 80%; /* Смещение содержимого вниз */
+    animation: slideUp 0.6s ease-out forwards; /* Анимация появления */
+}
+
+/* Стили для контента модального окна */
+.modal-content {
+    background-color: rgba(40, 40, 40, 60); /* Полностью черный фон с прозрачностью */
+    color: #ffffff;
+    padding: 87px;
+    border-radius: 25px 25px 0 0; /* Закругленные углы сверху */
+    width: 55%;
+    height: 500px; /* Установка фиксированной высоты */
+    text-align: center;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.5);
+    position: relative;
+    transform: translateY(0); /* Начальное положение */
+}
+
+/* Стили для изображения */
+.modal-logo {
+    width: 750px; /* Ширина круга */
+    height: 750px; /* Высота круга */
+    background-color: rgba(75, 0, 130, 0.5); /* Сиреневый фон с прозрачностью */
+    border-radius: 50%; /* Делает элемент круглым */
+    margin-left: 120px !important; /* Отступ слева */
+    margin-right: auto; /* Автоматическое центрирование справа */
+    margin-top: 100px; /* Отступ сверху */
+    margin-bottom: -100px !important; /* Отступ снизу */
+    display: block;
+    transition: all 0.3s ease; /* Плавный переход при изменении */
+    box-shadow: 0px 0px 75px 10px rgb(75, 0, 130); /* Сиреневая тень вокруг круга */
+    transform: translateY(30px); /* Перемещение элемента вниз на 30px */
+}
+
+/* Стили для заголовка */
+.modal-content h2 {
+    font-size: 20px;
+    margin-top: 110px; /* Добавляет отступ сверху */
+    margin-bottom: 10px; /* Добавляет отступ снизу */
+    white-space: nowrap; /* Запрещает перенос текста */
+    overflow: visible; /* Позволяет тексту выходить за пределы контейнера, если необходимо */
+    margin-left: -20px
+}
+
+/* Стили для основного текста */
+.modal-content p {
+    font-size: 15px;
+    margin-bottom: 20px;
+    margin-left: -30px
+}
+
+/* Стили для дополнительного текста */
+.modal-content small {
+    font-size: 14px;
+    color: #bbbbbb;
+}
+
+/* Стили для кнопки закрытия */
+.close-button {
+    position: absolute;
+    top: 10px; /* Перемещаем кнопку закрытия в видимую область */
+    right: 15px;
+    font-size: 44px;
+    color: #ffffff;
+    cursor: pointer;
+}
+/* Стили для кнопок */
+.movi-element {
+    width: 150px; /* Фиксированный размер элемента */
+    height: 60px;
+    background-color: #9370DB; /* Цвет элемента */
+    position: absolute; /* Позволяет перемещать элемент */
+    bottom: 100px; /* Отступ снизу */
+    right: 700px; /* Отступ справа */
+    cursor: pointer; /* Указывает, что элемент интерактивен */
+    border-radius: 15%; /* Закругленные углы */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Тень */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #ffffff;
+    margin-bottom: 40px; /* Отступ снизу между кнопками */
+}
+
+/* Позиционирование первой кнопки */
+.movi-element:first-child {
+    bottom: 120px; /* Отступ снизу */
+    right: 20px; /* Отступ справа */
+}
+
+/* Позиционирование второй кнопки */
+.movi-element:last-child {
+    bottom: 50px; /* Отступ снизу */
+    right: 20px; /* Отступ справа */
+}
+
+/* Стили для текста внутри кнопок */
+.level-text {
+    font-size: 14px; /* Размер шрифта */
+    color: #ffffff; /* Цвет текста */
+    text-align: center;
+    margin-top: 0; /* Убираем отступ сверху */
+}
+
+/* Анимация всплытия модального окна */
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+

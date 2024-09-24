@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scaleable=no">
+    <title>Game Interface</title>
+    <style>
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(75, 0, 130, 0.8);
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            background: url('static/img/fon.jpg') no-repeat center center;
+            background-size: cover;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 180px 180px rgba(0, 0, 0, 0.9), 0 0 80px rgba(0, 0, 0, 0.5) inset;
+            color: #ffffff;
+            height: 90%;
+            margin-top: -5px;
+        }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%; 
+    padding: 5px 0;
+    background: linear-gradient(
+        to right, 
+        rgba(255, 255, 255, 0.3) 1%, 
+        rgba(25, 25, 112, 0.3) 20%, 
+        rgba(75, 0, 130, 0.2) 80%, 
+        rgba(255, 255, 255, 0.3) 99%
+    );
+    border-radius: 5px;
+    position: fixed;
+    top: 2%;
+    left: 5%;
+    right: 5%;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.header-logo {
+    width: 160px; /* Задайте желаемый размер логотипа */
+    height: 50px;
+    margin-left: 15px; /* Отступ слева для размещения логотипа */
+}
+
+.header-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0;
+    background-color: #191970;
+    z-index: 1;
+    pointer-events: none;
+}
+
+
+.balances {
+    display: flex;
+    flex-direction: column; /* Вертикальное размещение балансов */
+    align-items: flex-start; /* Выровняем элементы по левому краю */
+    margin-left: auto; /* Сдвигаем элементы вправо */
+    margin-right: 20px; /* Добавляем отступ от правого края */
+}
+
+.balance-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px; /* Добавим небольшой отступ между балансами */
+}
+
+.balance-container img {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+}
+
+.balance-text {
+    font-size: 1.1em;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+.balance-click {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em; /* Размер шрифта */
+    color: #FFFFFF; /* Белый цвет текста */
+    font-weight: bold;
+    margin-bottom: 10px; /* Отступ снизу для создания пространства между балансом и прогресс-баром */
+    margin-top: 70px; /* Отступ сверху для расположения ближе к прогресс-бару */
+        margin-left: 30px; /* Отступ слева для сдвига вправо */
+}
+
+.balance-click img.balance-logo {
+    width: 40px; /* Ширина логотипа */
+    height: 40px; /* Высота логотипа */
+    margin-right: 10px; /* Отступ между логотипом и текстом */
+}
+
+.avatar {
+    font-size: 1.2em;
+    color: #FFFFFF; 
+}
+
+        .level-container {
+    display: flex;
+    flex-direction: column; /* Размещаем элементы вертикально */
+    align-items: center;
+    width: 90%;
+    margin-bottom: 20px;
+}
+
+.progress-bar-container {
+    width: 70%;
+    height: 25px;
+    background-color: #FFFFFF;
+    border-radius: 25px;
+    position: relative;
+    overflow: hidden;
+    margin: 1px auto 0 auto; /* Отступ сверху для размещения под header-container */
+    margin-left: 70px; /* Сдвиг влево */
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2), inset 0 -4px 8px rgba(255, 255, 255, 0.4); /* Эффект углубления */
+}
+
+
+.progress-bar-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 25px;
+    border: 1px solid #D3D3D3; /* Цвет и толщина линии */
+    pointer-events: none;
+    z-index: 1;
+}
+
+
+.progress-bar {
+    height: 100%;
+    width: 50%; /* Уровень прогресса */
+    background: linear-gradient(
+        to bottom, 
+        rgba(72, 61, 139, 0.8) 0%, 
+        rgba(25, 25, 112, 0.9) 50%, 
+        rgba(75, 0, 130, 0.8) 100%
+    );
+    border-radius: 55px;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 10px;
+    background: linear-gradient(
+        to bottom, 
+        rgba(255, 255, 255, 0.2) 0%, 
+        rgba(0, 0, 0, 0.1) 100%
+    ); /* Эффект объема сверху вниз */
+    opacity: 0.5;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.level-title {
+    font-size: 1em;
+    color: #FFFFFF;
+    font-weight: bold; /* Делаем шрифт жирным */
+    text-align: center; /* Центрируем текст */
+    margin-left: 40px; /* Отступ слева для сдвига вправо */
+}
+
+
+       .logo-container {
+    position: relative;
+    width: 200px;
+    height: 180px;
+    background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 90px;
+    margin-right: 120px;
+    margin-top: -40px;
+    margin-bottom: 60px;
+    left: 0;
+    top: 0;
+    overflow: visible; /* Позволяет логотипу выходить за границы контейнера */
+}
+
+.logo {
+    box-sizing: content-box;
+    width: 100%;
+    height: 110%;
+    background: url('/static/img/raketa.png') no-repeat center center;
+    background-size: cover;
+    cursor: pointer;
+    transition: transform 0.1s ease-in-out;
+    outline: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+        
+        .custom-button:active,
+.custom-button:focus {
+    transform: scale(0.95); /* Уменьшение размера кнопки при нажатии */
+    outline: none; /* Убираем обводку */
+}
+
+.logo:active,
+.logo:focus {
+    transform: scale(0.95); /* Уменьшение логотипа при нажатии */
+    outline: none; /* Убираем обводку */
+}
+
+       
+        @media (max-width: 480px) {
+            .footer .custom-button {
+                width: 60px;
+                height: 60px;
+                font-size: 1.2em;
+            }
+
+            .footer .label {
+                font-size: 0.6em;
+            }
+        }
+
+        .floating-message {
+    position: absolute;
+    font-size: 1.5em;
+    color: #DAA520;
+    font-weight: bold;
+    transition: all 1s ease; /* Увеличено время анимации */
+    pointer-events: none;
+    z-index: 9999; /* Убедитесь, что элемент выше других */
+}
+
+        .button-container {
+    display: flex;
+    justify-content: center; /* Центрируем контейнеры кнопок */
+    gap: 20px; /* Промежуток между кнопками */
+    margin-top: 20px; /* Отступ сверху */
+}
+
+.button-item {
+    display: flex;
+    flex-direction: column; /* Располагаем кнопку и подпись вертикально */
+    align-items: center; /* Центрируем по горизонтали */
+}
+
+.button-label {
+    font-size: 1.2em; /* Размер шрифта */
+    color: #FFFFFF; /* Белый цвет текста */
+    font-weight: bold; /* Полужирный шрифт */
+    margin-top: -25px; /* Отступ сверху для размещения под кнопками */
+    text-align: center;
+        margin-bottom: 10px; /* Добавляем отступ снизу для создания промежутка между надписями */
+}
+.button-label-left {
+    font-size: 1.2em; /* Размер шрифта */
+    color: #FFFFFF; /* Белый цвет текста */
+    font-weight: bold; /* Полужирный шрифт */
+    margin-top: -50px; /* Отступ сверху для размещения под кнопками */
+    text-align: center;
+    margin-right: 20px; /* Отступ справа для создания промежутка между надписями */
+}
+
+.button-label-right {
+    font-size: 1.2em; /* Размер шрифта */
+    color: #FFFFFF; /* Белый цвет текста */
+    font-weight: bold; /* Полужирный шрифт */
+    margin-top: -50px; /* Отступ сверху для размещения под кнопками */
+    text-align: center;
+    margin-left: 160px; /* Отступ слева для создания промежутка между надписями */
+}
+
+.info-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.energy, .boost {
+    display: flex;
+    flex-direction: column; /* Располагаем элементы вертикально */
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    font-size: 1.2em; /* Размер шрифта текста */
+    color: #FFFFFF; /* Цвет текста */
+    font-weight: bold; /* Жирный шрифт */
+    width: 100px; /* Ширина кнопки */
+    height: 100px; /* Высота кнопки */
+    transform: translateY(-40px); /* Поднимает элементы вверх */
+}
+.energy img, .boost img {
+    width: 40px; /* Размер логотипа */
+    height: 40px;
+    margin-bottom: 10px; /* Отступ между логотипом и текстом */
+}
+
+.energy:hover, .boost:hover {
+    transform: scale(1.1); /* Эффект увеличения при наведении */
+}
+
+.energy {
+    margin-left: 30px; /* Позволяет двигать кнопку влево */
+    margin-right: 0; /* Позволяет двигать кнопку вправо */
+    margin-top: 0; /* Позволяет двигать кнопку вверх */
+    margin-bottom: 0; /* Позволяет двигать кнопку вниз */
+}
+
+.boost {
+    margin-left: 0; /* Позволяет двигать кнопку влево */
+    margin-right: 20px; /* Позволяет двигать кнопку вправо */
+    margin-top: 0; /* Позволяет двигать кнопку вверх */
+    margin-bottom: 0; /* Позволяет двигать кнопку вниз */
+}
+
+        .round-button {
+    width: 90px;
+    height: 90px;
+    background-size: cover;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    border: none;
+    outline: none;
+    background-color: transparent;
+    transition: transform 0.2s ease-in-out;
+    position: relative; /* Добавляем для независимого управления */
+}
+
+.round-button:hover {
+    transform: scale(1.1);
+}
+
+.round-button.sunduk {
+    background-image: url('/static/sprite/21.png');
+    background-size: 130%;
+    background-position: center;
+    background-repeat: no-repeat;
+    left: -6px; /* Используем для передвижения кнопки влево */
+    top: -40px; /* Используем для передвижения кнопки вверх */
+    box-shadow: none; /* Убираем тень */
+    border: none; /* Убираем границу */
+}
+
+.round-button.fortune {
+    background-image: url('/static/img/3.png');
+    background-size: 130%;
+    background-position: center;
+    background-repeat: no-repeat;
+    left: 80px; /* Используем для передвижения кнопки вправо */
+    top: -40px; /* Используем для передвижения кнопки вверх */
+    box-shadow: none; /* Убираем тень */
+    border: none; /* Убираем границу */
+}
+
+    </style>
+    <link rel="preload" href="/static/footer.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="stylesheet" href="static/css/index-mobile.css" media="only screen and (max-width: 768px)">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        Telegram.WebApp.ready();
+        Telegram.WebApp.expand();
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const userId = '{{ user_id }}';
+            fetchBoostLevel(userId);
+            fetchBalances(userId);
+            fetchClicks(userId);
+            fetchEnergyStatus(userId);
+        });
+
+        function fetchBoostLevel(userId) {
+    console.log("Fetching boost level for user:", userId); // Лог для отладки
+    fetch(`/boost-level?user_id=${userId}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log("Received data:", data); // Лог для отладки
+            const levelElement = document.getElementById('level-text');
+
+            // Объединяем название уровня и его номер
+            levelElement.textContent = `${data.boost_name} ${data.level}/10`;
+
+            const progressBar = document.querySelector('.progress-bar');
+            progressBar.style.width = `${(data.level / 10) * 100}%`;
+        })
+        .catch(error => {
+            console.error('Ошибка при получении уровня буста:', error);
+        });
+}
+
+        function fetchBalances(userId) {
+            fetch(`/balance/dct?user_id=${userId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const balanceCoinElement = document.getElementById('balance-coin');
+                    balanceCoinElement.textContent = `${data.balance} `;
+                });
+
+            fetch(`/balance/usdt?user_id=${userId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const balanceUsdtElement = document.getElementById('balance-usdt');
+                    balanceUsdtElement.textContent = `${data.balance} `;
+                });
+        }
+
+        function fetchClicks(userId) {
+    fetch(`/clicks?user_id=${userId}`)
+        .then(response => response.json())
+        .then(data => {
+            updateClicks(data.clicks_today, data.max_clicks);
+        })
+        .catch(error => console.error('Ошибка при получении кликов:', error));
+}
+
+function updateClicks(currentClicks, maxClicks) {
+    const energyElement = document.getElementById('energy');
+    const remainingClicks = maxClicks - currentClicks;
+    energyElement.textContent = `${remainingClicks}/${maxClicks}`;
+}
+
+
+        function fetchEnergyStatus(userId) {
+    fetch(`/energy-status?user_id=${userId}`)
+        .then(response => response.json())
+        .then(data => {
+            const energyElement = document.getElementById('energy');
+            energyElement.textContent = `${data.energy}/${data.max_energy}`;
+            console.log("Обновление энергии: ", data.energy, data.max_energy);
+
+            // Добавляем обработчик клика для перехода на energy.html с user_id
+            const energyButton = document.querySelector('.button.energy');
+            energyButton.addEventListener('click', function() {
+                window.location.href = `/energy.html?user_id=${userId}`;
+            });
+        })
+        .catch(error => {
+            console.error('Ошибка при получении статуса энергии:', error);
+        });
+}
+function buyBoost(userId, level, cost) {
+    fetch('/buy-boost', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ user_id: userId, level: level, cost: cost })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert(data.message);
+            fetchBoostLevel(userId);  // Обновление уровня буста
+            fetchClicks(userId);  // Обновление количества токенов за клик
+        } else {
+            alert(data.message);
+        }
+    })
+    .catch(error => console.error('Ошибка при покупке буста:', error));
+}
+
+
+function upgradeEnergyLevel(userId) {
+    fetch('/upgrade-energy-level', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ user_id: userId })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.level) {
+            alert(`Уровень энергии повышен до ${data.level}`);
+            fetchEnergyStatus(userId);  // Обновляем статус энергии и кликов
+            fetchBoostLevel(userId);    // Обновляем уровень буста и прогресс бар
+        } else {
+            alert(data.error);
+        }
+    })
+    .catch(error => console.error('Ошибка при обновлении уровня энергии:', error));
+}
+
+
+        // Для обработки многократного нажатия на логотип
+        function clickToken(event) {
+    let logo = document.querySelector(".logo");
+
+    logo.style.transform = "scale(0.9)";
+    setTimeout(function() {
+        logo.style.transform = "scale(1.0)";
+    }, 100);
+
+    const userId = '{{ user_id }}';
+
+    fetch('/click', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `user_id=${userId}`
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.message === "Success") {
+            let balanceElement = document.getElementById('balance');
+            let currentBalance = parseInt(balanceElement.textContent);
+
+            if (!isNaN(currentBalance)) {
+                let updatedBalance = currentBalance + data.click_value; // Используем click_value с сервера
+                balanceElement.textContent = `${updatedBalance} `;
+            }
+            updateClicks(data.clicks_today, data.clicks_remaining); // Обновляем информацию о кликах
+            showPlus5000(event.clientX, event.clientY);
+            fetchEnergyStatus(userId); // Обновляем статус энергии
+        }
+    })
+    .catch(error => {
+        console.error("Ошибка при отправке запроса:", error);
+    });
+}
+
+
+        // Для поддержки мультитайпа
+        document.addEventListener('touchstart', function(event) {
+            if (event.target.classList.contains('logo')) {
+                clickToken(event);
+            }
+        });
+
+        function showPlus5000(x, y) {
+    let plus5000 = document.createElement('div');
+    plus5000.className = 'floating-message';
+    plus5000.style.left = `${x}px`;
+    plus5000.style.top = `${y}px`;
+
+    // Добавляем изображение вместо текста
+    let img = document.createElement('img');
+    img.src = '/static/img/13.png';
+    img.style.width = '30px'; // Задайте размер изображения по вашему усмотрению
+    img.style.height = '30px';
+    plus5000.appendChild(img);
+
+    // Устанавливаем z-index
+    plus5000.style.zIndex = 9999 + document.querySelectorAll('.floating-message').length;
+
+    document.body.appendChild(plus5000);
+
+    let balanceElement = document.getElementById('balance');
+    let balanceRect = balanceElement.getBoundingClientRect();
+    let balanceX = balanceRect.left + (balanceRect.width / 2) - (plus5000.offsetWidth / 2);
+    let balanceY = balanceRect.top;
+
+    setTimeout(() => {
+        plus5000.style.transform = `translate(${balanceX - x}px, ${balanceY - y}px)`;
+        plus5000.style.opacity = '0';
+    }, 50);
+
+    setTimeout(() => {
+        plus5000.remove();
+    }, 1200); // Увеличено время задержки удаления до 1200ms
+}
+
+
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header-container">
+            <img src="/static/img/love.png" alt="Logo" class="header-logo">
+    <div class="balances">
+        <div class="balance-container">
+            <img src="/static/img/16.png" alt="Coin Logo">
+            <div class="balance-text" id="balance-coin">Баланс DCT </div>
+        </div>
+        <div class="balance-container">
+            <img src="/static/img/usdt.png" alt="USDT Logo">
+            <div class="balance-text" id="balance-usdt">Баланс USDT </div>
+        </div>
+    </div>
+    <div class="avatar">
+        {% if avatar_url %}
+            <img src="{{ avatar_url }}" alt="{{ telegram_username }}" style="width: 50px; height: 50px; border-radius: 50%;">
+        {% else %}
+             {{ telegram_username }}
+        {% endif %}
+    </div>
+</div>
+
+        <div class="level-container">
+         <div class="balance-click">
+          <img src="/static/img/13.png" alt="Logo" class="balance-logo">
+<div class="balance"><span id="balance">0</span></div>
+    </div>
+    <div class="progress-bar-container">
+        <div class="progress-bar"></div>
+    </div>
+<div id="level-text" class="level-title"></div>
+</div>
+       
+        <div class="button-container">
+    <div class="button-item">
+        <button class="round-button sunduk" onclick="window.location.href='/sunduk.html?user_id={{ user_id }}'">
+        </button>
+        <span class="button-label button-label-left">Сундуки</span> <!-- Подпись под кнопкой "Сундуки" -->
+    </div>
+    
+    <div class="button-item">
+        <button class="round-button fortune" onclick="window.location.href='/fortune.html?user_id={{ user_id }}'">
+        </button>
+        <span class="button-label button-label-right">Фортуна</span> <!-- Подпись под кнопкой "Фортуна" -->
+    </div>
+</div>
+
+        <div class="logo-container">
+            <div class="logo" id="logo" onclick="clickToken(event)"></div>
+        </div>
+
+        <div class="info-buttons">
+    <div class="energy">
+        <img src="/static/img/energy.png" alt="Energy Icon">
+        <span id="energy">5000/5000</span>
+    </div>
+    <div class="boost" onclick="window.location.href='/boost.html?user_id={{ user_id }}'">
+        <img src="/static/img/boost.png" alt="Boost Icon">
+        <span>Boost</span>
+    </div>
+</div>
+
+        <div class="footer">
+            <button class="custom-button" onclick="window.location.href='/friends.html?user_id={{ user_id }}'">
+                <img src="static/img/friends.png" alt="Друзья">
+                <span class="label">Друзья</span>
+            </button>
+            <button class="custom-button" onclick="window.location.href='/mining.html?user_id={{ user_id }}'">
+                <img src="static/img/mining.png" alt="Майнинг">
+                <span class="label">Майнинг</span>
+            </button>
+            <button class="custom-button" onclick="window.location.href='/index.html?user_id={{ user_id }}'">
+                <img src="static/img/game.png" alt="Игра">
+                <span class="label">Игра</span>
+            </button>
+            <button class="custom-button" onclick="window.location.href='/task.html?user_id={{ user_id }}'">
+                <img src="static/img/task.png" alt="Задачи">
+                <span class="label">Задачи</span>
+            </button>
+           <button class="custom-button" onclick="window.location.href='/airdrop.html?user_id={{ user_id }}'">
+                <img src="static/img/16.png" alt="Airdrop">
+                <span class="label">Airdrop</span>
+        </button>
+        </div>
+    </div>
+</body>
+</html>
+

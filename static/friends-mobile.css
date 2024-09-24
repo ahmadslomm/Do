@@ -1,0 +1,97 @@
+/* Медиазапрос для экранов шириной до 768px (мобильные устройства и планшеты) */
+@media only screen and (max-width: 768px) {
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(75, 0, 130, 0.8);
+        background-size: cover;
+        font-family: Arial, sans-serif;
+        color: #ffffff;
+        overflow: hidden;
+    }
+
+    .container {
+        width: 100%; /* Расширяем контейнер на всю ширину экрана */
+        max-width: 100%; /* Убираем максимальную ширину */
+        padding: 10px; /* Уменьшаем внутренние отступы */
+        margin-top: 0; /* Убираем отрицательный отступ сверху */
+        height: auto; /* Автоматическая высота контейнера */
+    }
+
+    .header {
+        flex-direction: column; /* Переключаем на вертикальное расположение элементов */
+        align-items: flex-start; /* Выровняем элементы по началу */
+        margin-bottom: 10px; /* Уменьшаем отступ снизу */
+    }
+
+    .balance-containerA, .balance-containerB {
+        flex-direction: row; /* Переключаем на горизонтальное расположение элементов */
+        align-items: center; /* Центрируем элементы по вертикали */
+        justify-content: space-between; /* Разделяем элементы по ширине */
+        width: 100%; /* Расширяем контейнеры на всю ширину */
+    }
+
+    .balance-containerA img, .balance-containerB img {
+        width: 80px; /* Уменьшаем размер изображений */
+        height: auto; /* Сохраняем пропорции */
+        margin-bottom: 0; /* Убираем отступ снизу */
+    }
+
+    .balance-containerA .referral-count, .balance-containerB .referral-count {
+        font-size: 1em; /* Уменьшаем размер шрифта */
+        margin-top: 0; /* Убираем отступ сверху */
+    }
+
+    .info-containerA, .info-containerB {
+        padding: 15px; /* Уменьшаем внутренние отступы */
+        margin-left: 0; /* Убираем отступ слева */
+        width: 100%; /* Расширяем контейнеры на всю ширину */
+        font-size: 0.9em; /* Уменьшаем размер шрифта */
+        border-radius: 20px; /* Уменьшаем закругление углов */
+    }
+
+    .info-containerA img, .info-containerB img {
+        width: 80px; /* Уменьшаем размер изображений */
+        height: 80px; /* Устанавливаем высоту для изображений */
+        margin-left: 0; /* Убираем отступ слева */
+    }
+
+    .invite-button {
+        font-size: 1em; /* Уменьшаем размер шрифта */
+        padding: 8px; /* Уменьшаем внутренние отступы */
+        width: 100%; /* Расширяем кнопку на всю ширину */
+        margin-left: 0; /* Убираем отступ слева */
+    }
+
+    .referral-link-container {
+        font-size: 0.8em; /* Уменьшаем размер шрифта */
+        padding: 8px; /* Уменьшаем внутренние отступы */
+        margin-top: 5px; /* Уменьшаем отступ сверху */
+    }
+
+    .friend-item {
+        padding: 10px 0; /* Увеличиваем отступы для кликабельности */
+        border-bottom: 1px solid #999; /* Делаем границу менее заметной */
+    }
+
+    .info-containerA h3 {
+        font-size: 1.2em; /* Уменьшаем размер шрифта */
+        margin-bottom: 5px; /* Уменьшаем отступ снизу */
+    }
+
+    .call-to-action {
+        font-size: 1em; /* Уменьшаем размер шрифта */
+        margin-bottom: 10px; /* Уменьшаем отступ снизу */
+    }
+
+    .scrollable-content {
+        flex-grow: 1;
+        overflow-y: auto;
+        width: 100%; /* Расширяем область прокрутки на всю ширину */
+        padding: 10px; /* Добавляем внутренние отступы для удобства */
+    }
+}

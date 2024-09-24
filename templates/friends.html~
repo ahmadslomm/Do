@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Друзья</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(75, 0, 130, 0.8);
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            width: 95%;
+            max-width: 1000px;
+            background: linear-gradient(
+                to right, 
+                rgba(75, 0, 130, 0.8) 1%, 
+                rgba(25, 25, 112, 0.9) 20%, 
+                rgba(75, 0, 130, 0.8) 80%, 
+                rgba(75, 0, 130, 0.8) 99%
+            );
+            border-radius: 20px;
+            padding: 15px;
+            box-shadow: 0 180px 180px rgba(0, 0, 0, 0.9), 0 0 80px rgba(0, 0, 0, 0.5) inset;
+            color: #ffffff;
+            height: 90%;
+            overflow: hidden;
+            margin-top: -70px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: -10px;
+        }
+
+        .balance-containerA {
+            display: flex;
+            align-items: center;
+            flex-direction: column; /* Вертикальное расположение логотипа и текста */
+        }
+
+        .balance-containerA img {
+            width: 150px;
+            height: 60px;
+            margin-bottom: 5px; /* Отступ между логотипом и текстом */
+        }
+
+        .balance-containerA .referral-count {
+            font-size: 1.1em;
+            color: #FFFFFF;
+            font-weight: bold;
+        }
+
+        .balance-containerB {
+            display: flex;
+            align-items: center;
+            flex-direction: column; /* Вертикальное расположение логотипа и текста */
+        }
+
+        .balance-containerB img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 5px; /* Отступ между логотипом и текстом */
+        }
+
+        .balance-containerB .referral-count {
+            font-size: 1.0em;
+            color: #FFFFFF;
+            font-weight: bold;
+            margin-top: -20px;
+        }
+
+        .scrollable-content {
+            flex-grow: 1;
+            overflow-y: auto;
+            width: 100%;
+        }
+
+        .info-containerA {
+            background: linear-gradient(
+                to right, 
+                rgba(72, 61, 139, 0.8) 1%, 
+                rgba(25, 25, 112, 0.9) 20%, 
+                rgba(75, 0, 130, 0.8) 80%, 
+                rgba(72, 61, 139, 0.8) 99%
+            );
+            padding: 30px;
+            border-radius: 35px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 1em;
+            position: relative;
+            margin-left: 5px; /* Передвинуть контейнер вправо */
+            width: 80%; /* Уменьшение ширины контейнера A */
+        }
+
+        .info-containerB {
+            background: linear-gradient(
+                to right, 
+                rgba(72, 61, 139, 0.8) 1%, 
+                rgba(25, 25, 112, 0.9) 20%, 
+                rgba(75, 0, 130, 0.8) 80%, 
+                rgba(72, 61, 139, 0.8) 99%
+            );
+            padding: 30px;
+            border-radius: 35px;
+            margin-bottom: -1px;
+            display: flex;
+            align-items: center;
+            font-size: 0.8em;
+            margin-left: 5px; /* Передвинуть контейнер вправо */
+            position: relative;
+            width: 80%; /* Уменьшение ширины контейнера B */
+        }
+
+        .info-containerA::before, .info-containerB::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 35px;
+            border: 5px solid white;
+            z-index: -1;
+        }
+
+        .info-containerA img, .info-containerB img {
+            width: 120px;
+            height: 120px;
+            margin-left: -20px;
+        }
+
+        .info-containerA p, .info-containerB p {
+            margin: 0;
+            color: #000;
+        }
+
+        .invite-button {
+            background-color: #9932CC;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            font-size: 1.2em;
+            width: 80%;
+            margin: 10px 0;
+            margin-left: 20px;
+        }
+
+        .referral-link-container {
+            display: none;
+            margin-top: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 0.9em;
+            color: #ffffff;
+            text-align: left;
+            width: 100%;
+        }
+
+        .friend-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .friend-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-containerA h3 {
+            font-size: 1.5em; /* Размер шрифта */
+            color: #FFFFFF; /* Белый цвет текста */
+            font-weight: bold; /* Жирный шрифт */
+            text-align: center; /* Центрирование текста */
+            margin-bottom: 10px; /* Отступ снизу для отделения от следующего элемента */
+        }
+
+        .call-to-action {
+            font-size: 1.1em;
+            color: #FFFFFF;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Удалены стили для футера и кнопок, они теперь находятся в footer.css */
+    </style>
+    <link rel="preload" href="/static/css/footer.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="stylesheet" href="static/css/friends-mobile.css" media="only screen and (max-width: 768px)">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="balance-containerA">
+                <img src="/static/img/love.png" alt="USDT Logo">
+            </div>
+            <div class="balance-containerB">
+                <img src="/static/img/10.png" alt="Referral Logo">
+                <div class="referral-count" id="referral-count">Друзей 0</div>
+            </div>
+        </div>
+        <h4 class="call-to-action">Создай команду, чтобы получить больше наград!</h4>
+        <div class="info-containerA">
+            <img src="/static/img/banda.png" alt="Gift">
+            <h4>За каждого приведенного друга, вы получаете 25,000 монет.</h4>
+        </div>
+        <div class="info-containerB">
+            <img src="/static/img/kl.png" alt="Key" id="key-icon" style="display: none;">
+            <img src="/static/Тесла.png" alt="Car">
+            <p><h5>Выиграйте киберприз!<br>За каждые 10 друзей вы получите ключь от сундука с ценными призами, такими как: "USDT, Playstation 5, IPhone 15, iMac, наушники Airpods и автомобиль Tesla Кибертрек</h5></p>
+        </div>
+        <button class="invite-button" onclick="inviteReferral()">Пригласить друга</button>
+        <div id="referralLink" class="referral-link-container">
+            Ваша реферальная ссылка:
+            <input type="text" id="referralUrl" readonly>
+        </div>
+
+            
+            
+        </div>
+
+        <div class="footer">
+            <button class="custom-button" onclick="window.location.href='/friends.html?user_id={{ user_id }}'">
+                <img src="static/img/friends.png" alt="Майнинг">
+                <span class="label">Друзья</span>
+            </button>
+            <button class="custom-button" onclick="window.location.href='/mining.html?user_id={{ user_id }}'">
+                <img src="static/img/mining.png" alt="Майнинг">
+                <span class="label">Майнинг</span>
+            </button>
+            <button class="custom-button" onclick="window.location.href='/index.html?user_id={{ user_id }}'">
+                <img src="static/img/game.png" alt="Игра">
+                <span class="label">Игра</span>
+            </button>
+            <button class="custom-button" onclick="window.location.href='/task.html?user_id={{ user_id }}'">
+                <img src="static/img/task.png" alt="Задачи">
+                <span class="label">Задачи</span>
+            </button>
+            <button class="custom-button" onclick="window.location.href='/airdrop.html?user_id={{ user_id }}'">
+            <img src="static/img/16.png" alt="Airdrop">
+            <span class="label">Airdrop</span>
+        </button>
+        </div>
+    </div>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        Telegram.WebApp.ready();
+        Telegram.WebApp.expand();
+
+        const userId = '{{ user_id }}';
+
+        function fetchBalanceDCT() {
+            fetch(`/balance/dct?user_id=${encodeURIComponent(userId)}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('balance-coin').textContent = `${data.balance} DCT`;
+                })
+                .catch(error => console.error('Ошибка при выполнении запроса на сервер для DCT:', error));
+        }
+
+        function fetchBalanceUSDT() {
+            fetch(`/balance/usdt?user_id=${encodeURIComponent(userId)}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('balance-usdt').textContent = `${data.balance} USDT`;
+                })
+                .catch(error => console.error('Ошибка при выполнении запроса на сервер для USDT:', error));
+        }
+
+        function updateBalances() {
+            fetchBalanceDCT();
+            fetchBalanceUSDT();
+        }
+
+        function copyToClipboard(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+        }
+
+        function inviteReferral() {
+            const botUsername = "DUCKS25_bot";
+            const referralURL = `https://t.me/${botUsername}?start=user_${userId}`;
+            const referralLinkElement = document.getElementById('referralURL');
+            referralLinkElement.textContent = referralURL;
+            document.getElementById('referralLink').style.display = 'block';
+            copyToClipboard(referralURL);
+            alert('Реферальная ссылка скопирована в буфер обмена');
+        }
+
+        function checkForKeyReward() {
+            fetch(`/referral-info?user_id=${encodeURIComponent(userId)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.referrals.length >= 10) {
+                        document.getElementById('key-icon').style.display = 'block';
+                        fetch(`/activate-key?user_id=${encodeURIComponent(userId)}`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                alert('Вы получили ключ для открытия сундука!');
+                            } else {
+                                console.error('Ошибка активации ключа: ', data.message);
+                            }
+                        })
+                        .catch(error => console.error('Ошибка при активации ключа:', error));
+                    }
+                })
+                .catch(error => console.error('Ошибка при проверке количества рефералов:', error));
+        }
+
+        function updateReferralInfo() {
+            fetch(`/referral-info?user_id=${encodeURIComponent(userId)}`)
+                .then(response => response.json())
+                .then(data => {
+                    const referralCountElement = document.getElementById('referral-count');
+                    referralCountElement.textContent = `Друзя ${data.referrals.length}`;
+                    
+                    const tasksContainer = document.getElementById('tasks-container');
+                    tasksContainer.innerHTML = '';
+                    data.referrals.forEach(user => {
+                        const friendItem = document.createElement('div');
+                        friendItem.className = 'friend-item';
+                        friendItem.innerHTML = `
+                            <span>${user.telegram_username || user.id}</span>
+                            <span>25000 DCT</span>
+                        `;
+                        tasksContainer.appendChild(friendItem);
+                    });
+                    checkForKeyReward();
+                })
+                .catch(error => console.error('Ошибка при обновлении информации о рефералах:', error));
+        }
+
+        window.onload = function() {
+            updateBalances();
+            updateReferralInfo();
+        };
+    </script>
+</body>
+</html>
+

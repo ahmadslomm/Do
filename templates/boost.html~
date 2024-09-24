@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scaleable=no">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            background-color: transparent;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            background: url('/static/img/6.png') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: yellow;
+            overflow: hidden;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+
+        .balance-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .balance-container img {
+            width: 80px;
+            height: 80px;
+            margin-right: 10px;
+        }
+
+       .balance-text {
+    font-size: 2.8em;
+    color: black; /* Черный цвет */
+        font-weight: 900; /* Жирный шрифт */
+}
+
+        .boost-section {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px; /* Увеличено в 2 раза */
+    border-radius: 20px; /* Увеличено в 2 раза */
+    width: 95%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Увеличено в 2 раза */
+    margin-bottom: 20px; /* Увеличено в 2 раза */
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.boost-level {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* Увеличено в 2 раза */
+}
+
+.level-info {
+    display: flex;
+    align-items: center;
+    font-size: 1.1em;
+}
+
+.level-text {
+    margin-left: 10px; /* Увеличено в 2 раза */
+    font-size: 2.5em; /* Увеличено в 2 раза */
+}
+
+.level-price {
+    font-size: 2.8em; /* Увеличено в 2 раза */
+    color: #DAA520;
+}
+
+.boost-button {
+    background: #DAA520;
+    padding: 20px; /* Увеличено в 2 раза */
+    border-radius: 20px; /* Увеличено в 2 раза */
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Увеличено в 2 раза */
+    font-size: 2em; /* Увеличено в 2 раза */
+    transition: background-color 0.2s ease;
+}
+
+.boost-button:hover {
+    background: #c0971e;
+}
+
+
+        .footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 40px 0;
+    background-color: rgba(41, 43, 44, 0.7);
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    position: absolute; /* Абсолютное позиционирование */
+    bottom: 0; /* Футер будет находиться внизу страницы */
+    left: 0;
+}
+
+        .footer .custom-button {
+            background-color: #292b2c;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            color: #fff;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.4em;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            transition: fixed;
+            bottom: 0; /* Футер будет находиться внизу страницы */
+            left: 0;
+        }
+
+        .footer .custom-button img {
+            width: 60%;
+            height: auto;
+        }
+
+        .footer .custom-button:hover {
+            transform: scale(1.1);
+            background-color: #383838;
+        }
+
+        .footer .label {
+            font-size: 1em;
+            margin-top: 10px;
+            color: #fff;
+        }
+        @media (max-width: 480px) {
+            .balance-container img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .balance-text {
+                font-size: 1.8em;
+            }
+
+            .footer .custom-button {
+                width: 80px;
+                height: 80px;
+                font-size: 1.2em;
+            }
+
+            .footer .label {
+                font-size: 0.9em;
+            }
+
+        @media (max-width: 480px) {
+    .boost-section {
+        padding: 10px; /* Меньшие отступы на мобильных устройствах */
+        border-radius: 10px;
+    }
+
+    .boost-button {
+        padding: 10px;
+        font-size: 1.2em; /* Уменьшите шрифт на мобильных устройствах */
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="balance-container">
+                <img src="/static/img/16.png" alt="Coin Logo">
+                <div class="balance-text" id="balance-coin">Баланс</div>
+            </div>
+            <div class="balance-container">
+                <img src="/static/img/usdt.png" alt="USDT Logo">
+                <div class="balance-text" id="balance-usdt">Баланс</div>
+            </div>
+
+        </div>
+
+        <div class="boost-section">
+            <!-- Уровни буста -->
+            <div class="boost-level">
+                <div class="level-info">
+<span style="font-size: 1.4em;">1 уровень</span>
+                    <span class="level-text">- бесплатно (1 DCR тап)</span>
+                </div>
+                <button class="boost-button" onclick="buyBoost(1, 0)">Купить</button>
+            </div>
+
+            <div class="boost-level">
+                <div class="level-info">
+                    <span>2 уровень</span>
+                    <span class="level-text">- 5,000 (2 DCR тап)</span>
+                </div>
+                <button class="boost-button" onclick="buyBoost(2, 5000)">Купить</button>
+            </div>
+
+            <div class="boost-level">
+                <div class="level-info">
+                    <span>3 уровень</span>
+                    <span class="level-text">- 10,000 (4 DCR тап)</span>
+                </div>
+                <button class="boost-button" onclick="buyBoost(3, 10000)">Купить</button>
+            </div>
+
+            <div class="boost-level">
+                <div class="level-info">
+                    <span>4 уровень</span>
+                    <span class="level-text">- 13,000 (6 DCR тап)</span>
+                </div>
+                <button class="boost-button" onclick="buyBoost(4, 13000)">Купить</button>
+            </div>
+
+            <div class="boost-level">
+                <div class="level-info">
+                    <span>5 уровень</span>
+                    <span class="level-text">- 26,000 (8 DCR тап)</span>
+                </div>
+                <button class="boost-button" onclick="buyBoost(5, 26000)">Купить</button>
+            </div>
+
+            <div class="boost-level">
+                <div class="level-info">
+                    <span>6 уровень</span>
+                    <span class="level-text">- 52,000 (10 DCR тап)</span>
+                </div>
+                <button class="boost-button" onclick="buyBoost(6, 52000)">Купить</button>
+            </div>
+
+            <div class="boost-level">
+                <div class="level-info">
+                    <span>7 уровень</span>
+                    <span class="level-text">- 104,000 (12 DCR тап)</span>
+                </div>
+                <button class="boost-button" onclick="buyBoost(7, 104000)">Купить</button>
+            </div>
+
+            <div class="boost-level">
+                <div class="level-info">
+                    <span>8 уровень</span>
+                    <span class="level-text">- 208,000 (13 DCR тап)</span>
+                </div>
+                <button class="boost-button" onclick="buyBoost(8, 208000)">Купить</button>
+            </div>
+
+            <div class="boost-level">
+                <div class="level-info">
+                    <span>9 уровень</span>
+                    <span class="level-text">- 416,000 (14 DCR тап)</span>
+                </div>
+                <button class="boost-button" onclick="buyBoost(9, 416000)">Купить</button>
+            </div>
+
+            <div class="boost-level">
+                <div class="level-info">
+                    <span>10 уровень</span>
+                    <span class="level-text">- 832,000 (15 DCR тап)</span>
+                </div>
+                <button class="boost-button" onclick="buyBoost(10, 832000)">Купить</button>
+            </div>
+
+            <div class="boost-level">
+                <div class="level-info">
+                    <span>11 уровень</span>
+                    <span class="level-text">- 1.664.000 (20 DCR тап)</span>
+                </div>
+                <button class="boost-button" onclick="buyBoost(11, 1664000)">Купить</button>
+            </div>
+
+            <div class="boost-level">
+                <div class="level-info">
+                    <span>12 уровень</span>
+                    <span class="level-text">- 3.328.000 (21 DCR тап)</span>
+                </div>
+                <button class="boost-button" onclick="buyBoost(12, 3328000)">Купить</button>
+            </div>
+
+            <div class="boost-level">
+                <div class="level-info">
+                    <span>13 уровень</span>
+                    <span class="level-text">- 6.656.000 (22 DCR тап)</span>
+                </div>
+                <button class="boost-button" onclick="buyBoost(13, 6656000)">Купить</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            <button class="custom-button" onclick="window.location.href='/friends.html?user_id={{ user_id }}'">
+                <img src="static/img/friends.png" alt="Майнинг" style="height: 2.8em; vertical-align: middle;">
+    <span class="label">Друзя</span>
+</button>
+            <button class="custom-button" onclick="window.location.href='/mining.html?user_id={{ user_id }}'">
+    <img src="static/img/mining.png" alt="Майнинг" style="height: 2.8em; vertical-align: middle;">
+    <span class="label">Майнинг</span>
+</button>
+            <button class="custom-button" onclick="window.location.href='/index.html?user_id={{ user_id }}'">
+                <img src="static/img/game.png" alt="Майнинг" style="height: 2.8em; vertical-align: middle;">
+    <span class="label">Игра</span>
+</button>
+            <button class="custom-button" onclick="window.location.href='/task.html?user_id={{ user_id }}'">
+                <img src="static/img/task.png" alt="Майнинг" style="height: 12.8em; vertical-align: middle;">
+    <span class="label">Задачи</span>
+            <button class="custom-button" onclick="window.location.href='/airdrop.html?user_id={{ user_id }}'">
+                <img src="static/img/Airdrop.png" alt="Майнинг" style="height: 2.8em; vertical-align: middle;">
+    <span class="label">Airdrop</span>
+            </button>
+        </div>
+    </div>
+
+   <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>
+    Telegram.WebApp.ready();
+    Telegram.WebApp.expand();
+    
+        function buyBoost(level, cost) {
+            const userId = '{{ user_id }}'; // Здесь user_id будет передан сервером
+
+            if (confirm(`Вы уверены, что хотите приобрести ${level} уровень за ${cost} DCT?`)) {
+                fetch('/buy-boost', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        user_id: userId,
+                        level: level,
+                        cost: cost
+                    })
+                }).then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(`Вы успешно приобрели ${level} уровень!`);
+                        fetchBalances(userId); // Обновляем баланс
+                    } else {
+                        alert(`Ошибка: ${data.message}`);
+                    }
+                });
+            }
+        }
+
+        function fetchBalances(userId) {
+            fetch(`/balance/dct?user_id=${userId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const balanceCoinElement = document.getElementById('balance-coin');
+                    balanceCoinElement.textContent = `${data.balance} DCT`;
+                });
+
+            fetch(`/balance/usdt?user_id=${userId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const balanceUsdtElement = document.getElementById('balance-usdt');
+                    balanceUsdtElement.textContent = `${data.balance} USDT`;
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const userId = '{{ user_id }}';
+            fetchBalances(userId);
+        });
+    </script>
+</body>
+</html>

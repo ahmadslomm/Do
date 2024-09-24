@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Генератор USDT</title>
+<link rel="preload" href="/static/footer.css" as="style" onload="this.rel='stylesheet'">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            background: url('/static/img/fon.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 20px;
+            padding: 20px;
+            width: 90%;
+            height: 50%;
+            padding-bottom: 200px; /* Уменьшенный отступ снизу */
+            max-width: 500px;
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            background: url('static/img/fon.jpg') no-repeat center center;
+            background-size: cover;
+            color: #ffffff;
+            margin-top: 0px;
+            position: relative;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .balance-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .balance-container img {
+            width: 40px;
+            height: 40px;
+            margin-right: 5px;
+        }
+
+        .balance-text {
+            font-size: 1.1em;
+            color: #FFD700;
+            font-weight: bold;
+        }
+
+        .generator-section {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            width: 100%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            text-align: left;
+            font-size: 1.2em;
+            color: #FFD700;
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .income-bar,
+        .upgrade-bar {
+            background: #555;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: left;
+            width: 95%;
+            margin-bottom: 10px;
+            color: #FFD700;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .start-mining {
+            background: #DAA520;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            font-size: 1.2em;
+            width: 45%;
+            color: #000;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .balance-container img {
+                width: 30px;
+                height: 30px;
+            }
+
+            .balance-text {
+                font-size: 1em;
+            }
+
+            .start-mining {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="balance-container">
+                <img src="/static/img/16.png" alt="Coin Logo">
+                <div class="balance-text" id="balance-coin">Баланс</div>
+            </div>
+            <div class="balance-container">
+                <img src="/static/img/usdt.png" alt="USDT Logo">
+                <div class="balance-text" id="balance-usdt">Баланс</div>
+            </div>
+        </div>
+
+        <div class="generator-section">
+            <p>Зарабатывайте USDT в течение 3 часов.</p>
+            <div class="controls">
+                <div id="income-bar" class="income-bar">Доход в час 0.01 USDT</div>
+                <div id="upgrade-bar" class="upgrade-bar">Цена обновы 100 USDT</div>
+                <div id="energy-level" class="upgrade-bar">Уровень 1</div>
+            </div>
+            <div class="action-buttons">
+                <button id="start-mining-button" class="start-mining" onclick="startMining()">Майнинг</button>
+                <button class="start-mining" onclick="upgradeMining()">💎 Улучшить Майнинг</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            <button class="custom-button" onclick="window.location.href='/friends.html?user_id={{ user_id }}'">
+                <img src="static/img/friends.png" alt="Друзья">
+                <span class="label">Друзья</span>
+            </button>
+            <button class="custom-button" onclick="window.location.href='/mining.html?user_id={{ user_id }}'">
+                <img src="static/img/mining.png" alt="Майнинг">
+                <span class="label">Майнинг</span>
+            </button>
+            <button class="custom-button" onclick="window.location.href='/index.html?user_id={{ user_id }}'">
+                <img src="static/img/game.png" alt="Игра">
+                <span class="label">Игра</span>
+            </button>
+            <button class="custom-button" onclick="window.location.href='/task.html?user_id={{ user_id }}'">
+                <img src="static/img/task.png" alt="Задачи">
+                <span class="label">Задачи</span>
+            </button>
+           <button class="custom-button" onclick="window.location.href='/airdrop.html?user_id={{ user_id }}'">
+            <img src="static/img/6.png" alt="Airdrop">
+            <span class="label">USDT Майнинг</span>
+        </button>
+        </div>
+    </div>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+    Telegram.WebApp.ready();
+    Telegram.WebApp.expand();
+    
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const userId = '{{ user_id }}';
+        if (userId) {
+            fetchBalances(userId);
+            checkMiningStatus(userId);
+            fetchMiningInfo(userId);
+        } else {
+            console.error('User ID is undefined');
+        }
+    });
+
+    function fetchBalances(userId) {
+        fetch(`/balance/dct?user_id=${userId}`)
+            .then(response => response.json())
+            .then(data => {
+                const balanceCoinElement = document.getElementById('balance-coin');
+                balanceCoinElement.textContent = `${data.balance.toFixed(3)} DCT`;
+            });
+
+        fetch(`/balance/usdt?user_id=${userId}`)
+            .then(response => response.json())
+            .then(data => {
+                const balanceUsdtElement = document.getElementById('balance-usdt');
+                balanceUsdtElement.textContent = `${data.balance.toFixed(3)} USDT`;
+            });
+    }
+
+    function checkMiningStatus(userId) {
+    fetch(`/check-mining-status-usdt?user_id=${userId}`)
+        .then(response => response.json())
+        .then(data => {
+            if (!data.mining_active) {
+                document.getElementById('start-mining-button').disabled = false;
+                document.getElementById('start-mining-button').textContent = "Майнинг";
+            } else {
+                document.getElementById('start-mining-button').disabled = true;
+                document.getElementById('start-mining-button').textContent = "Майнинг идет...";
+            }
+        })
+        .catch(error => console.error('Ошибка:', error));
+}
+
+    function startMining() {
+        const userId = '{{ user_id }}';
+        fetch('/start-mining-usdt', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ user_id: userId })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message === "Mining started") {
+                alert("Майнинг запущен!");
+                document.getElementById('start-mining-button').disabled = true;
+                document.getElementById('start-mining-button').textContent = "Майнинг идет...";
+                checkMiningStatus(userId);
+            } else {
+                alert("Ошибка: " + data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Ошибка при запуске майнинга:', error);
+        });
+    }
+
+    function upgradeMining() {
+        const userId = '{{ user_id }}';
+        fetch('/upgrade-mining-usdt', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ user_id: userId })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(`Уровень повышен до ${data.new_level}! Новый доход в час: ${data.new_income} USDT.`);
+                fetchMiningInfo(userId);
+            } else {
+                alert(`Ошибка апгрейда: ${data.message}`);
+            }
+        })
+        .catch(error => console.error('Ошибка:', error));
+    }
+    </script>
+</body>
+</html>
+

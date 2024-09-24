@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Project of Fortune</title>
+<link rel="preload" href="/static/footer.css" as="style" onload="this.rel='stylesheet'">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            background: url('/static/img/fon.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: yellow;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 20px;
+            padding: 20px;
+            width: 90%;
+            height: 50%;
+            padding-bottom: 200px; /* Уменьшенный отступ снизу */
+            max-width: 500px;
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            background: url('static/img/fon.jpg') no-repeat center center;
+            background-size: cover;
+            color: #ffffff;
+            margin-top: 0px;
+            position: relative;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .balance-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .balance-container img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .balance-text {
+            font-size: 1.2em;
+            color: black;
+            font-weight: 900;
+        }
+
+        .wheel-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin-top: -80px;
+            perspective: 1000px;
+        }
+
+        .wheel {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(
+                from 90deg at 50% 50%,
+                #d32f2f 0% 8.33%, #ff8a80 8.33% 16.66%,
+                #c2185b 16.66% 25%, #ff80ab 25% 33.33%,
+                #7b1fa2 33.33% 41.66%, #ea80fc 41.66% 50%,
+                #303f9f 50% 58.33%, #82b1ff 58.33% 66.66%,
+                #0288d1 66.66% 75%, #81d4fa 75% 83.33%,
+                #00796b 83.33% 91.66%, #80cbc4 91.66% 100%
+            );
+            background-clip: padding-box;
+            box-shadow: 
+                inset 0 5px 10px rgba(255, 255, 255, 0.6),
+                inset 0 -5px 10px rgba(0, 0, 0, 0.4),
+                0 20px 30px rgba(0, 0, 0, 0.7);
+            transform-style: preserve-3d;
+            transition: transform 4s ease-out;
+        }
+
+        .wheel-segment {
+            position: absolute;
+            width: 58%;
+            height: 70%;
+            top: 50%;
+            left: 50%;
+            transform-origin: 0 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.0em;
+            text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.8);
+            transform: translate(-50%, -50%);
+        }
+        .wheel-segment span {
+    transform: rotate(23deg); /* Поворот текста на 10 градусов */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.value {
+    font-size: 1.2em; /* Размер для числа */
+    line-height: 1.2; /* Высота строки */
+}
+
+.currency {
+    font-size: 0.8em; /* Размер для валюты */
+    line-height: 0.8; /* Высота строки для валюты */
+    margin-top: 2px; /* Отступ сверху */
+}
+}
+         .wheel-segment:nth-child(1) { transform: rotate(0deg); color: #d32f2f; } /* 10000 DCT */
+.wheel-segment:nth-child(2) { transform: rotate(30deg); color: #ff8a80; } /* 10 USDT */
+.wheel-segment:nth-child(3) { transform: rotate(60deg); color: #c2185b; } /* 5000 DCT */
+.wheel-segment:nth-child(4) { transform: rotate(90deg); color: #ff80ab; } /* Ключ */
+.wheel-segment:nth-child(5) { transform: rotate(120deg); color: #7b1fa2; } /* 3000 DCT */
+.wheel-segment:nth-child(6) { transform: rotate(150deg); color: #ea80fc; } /* 3 USDT */
+.wheel-segment:nth-child(7) { transform: rotate(180deg); color: #303f9f; } /* 100000 DCT */
+.wheel-segment:nth-child(8) { transform: rotate(210deg); color: #82b1ff; } /* 1 USDT */
+.wheel-segment:nth-child(9) { transform: rotate(240deg); color: #0288d1; } /* 50000 DCT */
+.wheel-segment:nth-child(10) { transform: rotate(270deg); color: #81d4fa; } /* 0.5 USDT */
+.wheel-segment:nth-child(11) { transform: rotate(300deg); color: #00796b; } /* 5 USDT */
+.wheel-segment:nth-child(12) { transform: rotate(330deg); color: #80cbc4; } /* Ключ */
+
+.wheel-segment:nth-child(1) { 
+    transform: rotate(90deg) translate(0, -90%); 
+    color: #ff80ab; 
+} 
+
+.wheel-segment:nth-child(2) { 
+    transform: rotate(120deg) translate(0, -90%); 
+    color: #7b1fa2; 
+} /* 3000 DCT */
+
+.wheel-segment:nth-child(3) { 
+    transform: rotate(150deg) translate(0, -95%); 
+    color: #ea80fc; 
+} /* 3 USDT */
+
+.wheel-segment:nth-child(4) { 
+    transform: rotate(180deg) translate(0, -90%); 
+    color: #303f9f; 
+} /* 100000 DCT */
+
+.wheel-segment:nth-child(5) { 
+    transform: rotate(210deg) translate(0, -90%); 
+    color: #82b1ff; 
+} /* 1 USDT */
+
+.wheel-segment:nth-child(6) { 
+    transform: rotate(240deg) translate(0, -90%); 
+    color: #0288d1; 
+} /* 50000 DCT */
+
+.wheel-segment:nth-child(7) { 
+    transform: rotate(270deg) translate(0, -90%); 
+    color: #81d4fa; 
+} /* 0.5 USDT */
+
+.wheel-segment:nth-child(8) { 
+    transform: rotate(300deg) translate(0, -90%); 
+    color: #00796b; 
+} /* 5 USDT (раньше Ключ) */
+
+.wheel-segment:nth-child(9) { 
+    transform: rotate(330deg) translate(0, -90%); 
+    color: #80cbc4; 
+} /* Ключ */
+
+.wheel-segment:nth-child(10) { 
+    transform: rotate(0deg) translate(0, -90%); 
+    color: #d32f2f; 
+} /* 10000 DCT */
+
+.wheel-segment:nth-child(11) { 
+    transform: rotate(30deg) translate(0, -90%); 
+    color: #ff8a80; 
+} /* 10 USDT */
+
+.wheel-segment:nth-child(12) { 
+    transform: rotate(60deg) translate(0, -90%); 
+    color: #c2185b; 
+} /* 5000 DCT */
+
+        .pointer {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 40px solid silver;
+            z-index: 10;
+            filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.7));
+            background: linear-gradient(to bottom, #d3d3d3, #a9a9a9);
+            box-shadow:
+                0 2px 4px rgba(0, 0, 0, 0.5),
+                inset 0 1px 2px rgba(255, 255, 255, 0.5),
+                inset 0 -1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .center-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(to bottom, #fbc02d, #f57f17);
+            border-radius: 50%;
+            box-shadow: 
+                0 6px 15px rgba(0, 0, 0, 0.5),
+                inset 0 4px 6px rgba(255, 255, 255, 0.6),
+                inset 0 -4px 8px rgba(0, 0, 0, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2em;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+        }
+
+        .center-circle:active {
+            transform: translate(-50%, -50%) scale(0.95);
+            box-shadow: 
+                0 4px 10px rgba(0, 0, 0, 0.5),
+                inset 0 2px 4px rgba(255, 255, 255, 0.6),
+                inset 0 -2px 4px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="balance-container">
+                <img src="/static/img/16.png" alt="Coin Logo">
+                <div class="balance-text" id="balance-coin">Баланс</div>
+            </div>
+            <div class="balance-container">
+                <img src="/static/img/usdt.png" alt="USDT Logo">
+                <div class="balance-text" id="balance-usdt">Баланс</div>
+            </div>
+        </div>
+        <div class="wheel-container">
+            <div id="wheel" class="wheel">
+              <div class="wheel-segment"><span><span class="value">10000</span><span class="currency">DCT</span></span></div>
+<div class="wheel-segment"><span><span class="value">10</span><span class="currency">USDT</span></span></div>
+<div class="wheel-segment"><span><span class="value">5000</span><span class="currency">DCT</span></span></div>
+<div class="wheel-segment"><span>🔑</span></div> <!-- Key -->
+<div class="wheel-segment"><span><span class="value">3000</span><span class="currency">DCT</span></span></div>
+<div class="wheel-segment"><span><span class="value">3</span><span class="currency">USDT</span></span></div>
+<div class="wheel-segment"><span><span class="value">100000</span><span class="currency">DCT</span></span></div>
+<div class="wheel-segment"><span><span class="value">1</span><span class="currency">USDT</span></span></div>
+<div class="wheel-segment"><span><span class="value">50000</span><span class="currency">DCT</span></span></div>
+<div class="wheel-segment"><span><span class="value">0.5</span><span class="currency">USDT</span></span></div>
+<div class="wheel-segment"><span><span class="value">5</span><span class="currency">USDT</span></span></div>
+<div class="wheel-segment"><span>🔑</span></div> <!-- Key -->
+
+
+            </div>
+            <div class="pointer"></div>
+            <div class="center-circle" onclick="checkAndSpin()">SPIN</div>
+        </div>
+    </div>
+    <div class="footer">
+        <button class="custom-button" onclick="window.location.href='/friends.html?user_id={{ user_id }}'">
+            <img src="static/img/friends.png" alt="Друзья">
+            <span class="label">Друзья</span>
+        </button>
+        <button class="custom-button" onclick="window.location.href='/mining.html?user_id={{ user_id }}'">
+            <img src="static/img/mining.png" alt="Майнинг">
+            <span class="label">Майнинг</span>
+        </button>
+        <button class="custom-button" onclick="window.location.href='/index.html?user_id={{ user_id }}'">
+            <img src="static/img/game.png" alt="Игра">
+            <span class="label">Игра</span>
+        </button>
+        <button class="custom-button" onclick="window.location.href='/task.html?user_id={{ user_id }}'">
+            <img src="static/img/task.png" alt="Задачи">
+            <span class="label">Задачи</span>
+        </button>
+      <button class="custom-button" onclick="window.location.href='/airdrop.html?user_id={{ user_id }}'">
+            <img src="static/img/6.png" alt="Airdrop">
+            <span class="label">USDT Майнинг</span>
+        </button>
+    </div>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        Telegram.WebApp.ready();
+        Telegram.WebApp.expand();
+
+        const userId = "{{ user_id }}";
+
+        function checkAndSpin() {
+            fetch(`/check-eligibility?user_id=${encodeURIComponent(userId)}&action_type=FORTUNA`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.eligible) {
+                        spinWheel();
+                    } else {
+                        alert(`Попробуйте снова через ${Math.ceil(data.remaining_time / 60)} минут.`);
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка при проверке возможности вращения:', error);
+                });
+        }
+
+        function spinWheel() {
+            const wheel = document.getElementById('wheel');
+            const sectors = 12;
+            const sectorDegree = 360 / sectors;
+            const winnings = [
+                {type: 'dct', amount: 10000}, 
+                {type: 'usdt', amount: 10}, 
+                {type: 'dct', amount: 5000},
+                {type: 'key'},
+                {type: 'dct', amount: 3000},
+                {type: 'usdt', amount: 3},
+                {type: 'dct', amount: 100000},
+                {type: 'usdt', amount: 1},
+                {type: 'dct', amount: 50000},
+                {type: 'usdt', amount: 0.5},
+                {type: 'usdt', amount: 5},
+                {type: 'key'}
+            ];
+            const randomSector = Math.floor(Math.random() * sectors);
+            const stopDegree = randomSector * sectorDegree + sectorDegree / 2;
+            const winningItem = winnings[randomSector];
+
+            const rotationDegree = 360 * 5 + stopDegree;
+
+            wheel.style.transition = 'transform 4s ease-out';
+            wheel.style.transform = `rotate(${rotationDegree}deg)`;
+
+            setTimeout(() => {
+                wheel.style.transition = 'none';
+                wheel.style.transform = `rotate(${stopDegree}deg)`;
+
+                updateBalance(winningItem);
+            }, 4000);
+        }
+
+        function updateBalance(winningItem) {
+    let requestBody = {
+        user_id: userId,
+        type: winningItem.type
+    };
+
+    if (winningItem.type === 'dct' || winningItem.type === 'usdt') {
+        requestBody.balance = winningItem.amount;  // Передаем количество для обновления баланса
+    }
+
+    fetch('/update_balance', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody)
+    }).then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            // Обновляем баланс на клиенте после успешного обновления на сервере
+            if (winningItem.type === 'dct') {
+                fetchBalanceDCT();  // Обновляем отображение баланса DCT
+            } else if (winningItem.type === 'usdt') {
+                fetchBalanceUSDT();  // Обновляем отображение баланса USDT
+            }
+        } else {
+            alert('Произошла ошибка при обновлении баланса');
+        }
+    });
+}
+
+
+        function fetchBalanceDCT() {
+            fetch(`/balance/dct?user_id=${encodeURIComponent(userId)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.balance !== undefined) {
+                        document.getElementById('balance-coin').textContent = ` ${data.balance} DCT`;
+                    } else {
+                        console.error('Ошибка получения баланса DCT: ', data.message || 'Неизвестная ошибка');
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка при выполнении запроса на сервер для DCT:', error);
+                });
+        }
+
+        function fetchBalanceUSDT() {
+            fetch(`/balance/usdt?user_id=${encodeURIComponent(userId)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.balance !== undefined) {
+                        document.getElementById('balance-usdt').textContent = ` ${data.balance} USDT`;
+                    } else {
+                        console.error('Ошибка получения баланса USDT: ', data.message || 'Неизвестная ошибка');
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка при выполнении запроса на сервер для USDT:', error);
+                });
+        }
+
+        window.onload = function() {
+            fetchBalanceDCT();
+            fetchBalanceUSDT();
+        };
+    </script>
+</body>
+</html>
+

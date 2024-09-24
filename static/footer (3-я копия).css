@@ -1,0 +1,74 @@
+.footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 5px 0;
+background: linear-gradient(to right, rgba(255, 255, 255), rgba(25, 25, 112, 0.9), rgba(75, 0, 130, 0.8), rgba(255, 255, 255));
+    border-radius: 5px; /* Увеличенное округление для футера */
+    box-shadow: 0 180px 180px rgba(0, 0, 0, 0.9), 0 0 80px rgba(0, 0, 0, 0.5) inset;
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden; /* Для того чтобы псевдоэлементы не выходили за границы */
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px; /* Толщина верхней линии */
+    background-color: #191970; /* Цвет верхней линии */
+    z-index: 1;
+    pointer-events: none;
+}
+
+.footer::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px; /* Толщина нижней линии */
+    background-color: #FFFFFF; /* Цвет нижней линии */
+    z-index: 1;
+    pointer-events: none;
+}
+
+.footer::before,
+.footer::after {
+    border-radius: 15px; /* Соответствует основному закруглению */
+}
+
+.footer::after {
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.9); /* Усиленная тень для эффекта опускания по бокам */
+}
+
+.footer .custom-button {
+    background-color: transparent; /* Убираем фон кнопки */
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    color: #fff;
+    width: auto; /* Убираем фиксированную ширину */
+    height: auto; /* Убираем фиксированную высоту */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1em;
+    box-shadow: none; /* Убираем тени */
+}
+
+.footer .custom-button img {
+    width: 40px; /* Устанавливаем размер логотипа */
+    height: auto;
+}
+
+.footer .label {
+    font-size: 0.8em;
+    margin-top: 1px;
+    color: #fff;
+}
+

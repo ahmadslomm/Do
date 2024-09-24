@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scaleable=no">
+    <title>Список задач</title>
+    <style>
+                html, body {
+            height: 100%;
+            margin: 0;
+            background-color: transparent;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            background: url('/static/img/6.png') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: yellow;
+            overflow: hidden;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+
+        .balance-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .balance-container img {
+            width: 80px;
+            height: 80px;
+            margin-right: 10px;
+        }
+
+       .balance-text {
+    font-size: 2.8em;
+    color: black; /* Черный цвет */
+        font-weight: 900; /* Жирный шрифт */
+}
+
+        .task-list {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            width: 97%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            min-height: 5000px;
+            margin-bottom: 10px;
+            text-align: left;
+            color: #000;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            border: 10px solid #000;
+            background-color: #696969;
+            color: #000;
+            margin-bottom: 10px;
+            border-radius: 30px;
+            font-size: 1.4em;
+            
+        }
+
+        .task-item img {
+    width: 80px !important;
+    height: 60px !important;
+    margin-right: 10px !important;
+}
+
+        .task-item .task-text {
+            flex-grow: 1; 
+            margin-left: 10px; 
+    font-size: 1.8em !important;
+        }
+
+        .task-item .reward {
+            font-weight: bold;
+            margin-left: 50px;
+            font-size: 1.8em !important;
+        }
+
+        .task-item button {
+    padding: 15px 25px !important; /* Внутренние отступы */
+    background-color: #32CD32 !important; /* Цвет фона кнопки */
+    border: 2px solid #228B22 !important; /* Цвет и толщина границы */
+    border-radius: 25px !important; /* Радиус скругления углов */
+    cursor: pointer !important;
+    font-weight: bold !important;
+    color: #ffffff !important; /* Цвет текста */
+    font-size: 1.5em !important; /* Размер шрифта */
+    width: auto !important;
+    height: auto !important;
+    text-align: center !important;
+    display: inline-block !important; /* Блочная модель для кнопки */
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.15) !important; /* Тень для объёмного эффекта */
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out !important; /* Плавные эффекты при наведении */
+}
+
+.task-item button:hover {
+    background-color: #28a745 !important; /* Цвет фона при наведении */
+    transform: scale(1.05) !important; /* Небольшое увеличение при наведении */
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2) !important; /* Увеличенная тень при наведении */
+}
+
+
+
+@media (max-width: 480px) {
+    .task-list {
+        padding: 10px;
+        width: 100%;
+        min-height: 2500px;
+    }
+
+    .task-item {
+        padding: 8px;
+        border: 5px solid #000;
+        font-size: 1em;
+        margin-bottom: 8px;
+    }
+
+    .task-item img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .task-item .task-text {
+        font-size: 1em;
+        margin-left: 5px;
+    }
+
+    .task-item .reward {
+        margin-left: 20px;
+        font-size: 1em;
+    }
+
+    .task-item button {
+        padding: 8px 15px;
+        font-size: 0.7em;
+        width: 90px;
+        height: 35px;
+    }
+}
+
+/* Стили для средних экранов (480px до 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .task-list {
+        padding: 12px;
+        width: 95%;
+        min-height: 4000px;
+    }
+
+    .task-item {
+        padding: 9px;
+        border: 8px solid #000;
+        font-size: 1.1em;
+        margin-bottom: 9px;
+    }
+
+    .task-item img {
+        width: 22px;
+        height: 22px;
+    }
+
+    .task-item .task-text {
+        font-size: 1.1em;
+        margin-left: 8px;
+    }
+
+    .task-item .reward {
+        margin-left: 30px;
+        font-size: 1.1em;
+    }
+
+    .task-item button {
+        padding: 9px 18px;
+        font-size: 1.75em;
+        width: 100px;
+        height: 38px;
+    }
+}
+
+/* Стили для больших экранов (более 768px) */
+@media (min-width: 769px) {
+    .task-list {
+        padding: 15px;
+        width: 97%;
+        min-height: 5000px;
+    }
+
+    .task-item {
+        padding: 12px;
+        border: 10px solid #000;
+        font-size: 1.2em;
+        margin-bottom: 10px;
+    }
+
+    .task-item img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .task-item .task-text {
+        font-size: 1.2em;
+        margin-left: 10px;
+    }
+
+    .task-item .reward {
+        margin-left: 50px;
+        font-size: 1.2em;
+    }
+
+    .task-item button {
+        padding: 10px 20px;
+        font-size: 0.8em;
+        width: 110px;
+        height: 40px;
+    }
+}
+
+ .footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 40px 0;
+    background-color: rgba(41, 43, 44, 0.7);
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    position: absolute; /* Абсолютное позиционирование */
+    bottom: 0; /* Футер будет находиться внизу страницы */
+    left: 0;
+}
+
+        .footer .custom-button {
+            background-color: #292b2c;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            color: #fff;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.4em;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            transition: fixed;
+            bottom: 0; /* Футер будет находиться внизу страницы */
+            left: 0;
+        }
+
+        .footer .custom-button img {
+            width: 60%;
+            height: auto;
+        }
+
+        .footer .custom-button:hover {
+            transform: scale(1.1);
+            background-color: #383838;
+        }
+
+        .footer .label {
+            font-size: 1em;
+            margin-top: 10px;
+            color: #fff;
+        }
+
+         @media (max-width: 480px) {
+            .balance-container img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .balance-text {
+                font-size: 1.8em;
+            }
+
+            .footer .custom-button {
+                width: 80px;
+                height: 80px;
+                font-size: 1.2em;
+            }
+
+            .footer .label {
+                font-size: 0.9em;
+            }
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="balance-container">
+                <img src="/static/img/16.png" alt="Coin Logo">
+                <div class="balance-text" id="balance-coin">Баланс</div>
+            </div>
+            <div class="balance-container">
+                <img src="/static/img/usdt.png" alt="USDT Logo">
+                <div class="balance-text" id="balance-usdt">Баланс</div>
+            </div>
+            <div class="title"></div>
+
+        </div>
+
+        <div class="task-list" id="task-list">
+            <!-- Задачи добавляются динамически через JavaScript -->
+        </div>
+
+        <div class="footer">
+            <button class="custom-button" onclick="window.location.href='/friends.html?user_id={{ user_id }}'">
+                <img src="static/img/friends.png" alt="Майнинг" style="height: 2.8em; vertical-align: middle;">
+    <span class="label">Друзя</span>
+</button>
+            <button class="custom-button" onclick="window.location.href='/mining.html?user_id={{ user_id }}'">
+    <img src="static/img/mining.png" alt="Майнинг" style="height: 2.8em; vertical-align: middle;">
+    <span class="label">Майнинг</span>
+</button>
+            <button class="custom-button" onclick="window.location.href='/index.html?user_id={{ user_id }}'">
+                <img src="static/img/game.png" alt="Майнинг" style="height: 2.8em; vertical-align: middle;">
+    <span class="label">Игра</span>
+</button>
+            <button class="custom-button" onclick="window.location.href='/task.html?user_id={{ user_id }}'">
+                <img src="static/img/task.png" alt="Майнинг" style="height: 2.8em; vertical-align: middle;">
+    <span class="label">Задачи</span>
+            <button class="custom-button" onclick="window.location.href='/airdrop.html?user_id={{ user_id }}'">
+                <img src="static/img/Airdrop.png" alt="Майнинг" style="height: 2.8em; vertical-align: middle;">
+    <span class="label">Airdrop</span>
+</button>
+        </div>
+    </div>
+ <script src="https://telegram.org/js/telegram-web-app.js"></script>
+ <script>
+    Telegram.WebApp.ready();
+    Telegram.WebApp.expand();
+    const userId = '{{ user_id }}'; // Получение идентификатора пользователя
+
+    // Задачи
+    const tasks = [
+        {
+            id: 'TG',
+            text: 'Наш канал TG',
+            reward: '+100,000 DCT',
+            action: null,
+            link: '/link-to-tg',
+            icon: '/static/img/tg.png' // путь к иконке
+        },
+        {
+            id: 'TWITTER',
+            text: 'Наш канал Twitter',
+            reward: '+100,000 DCT',
+            action: null,
+            link: '/link-to-twitter',
+            icon: '/static/img/twit.png' // путь к иконке
+        },
+        {
+            id: 'CHAT',
+            text: 'Наш чат TG',
+            reward: '+100,000 DCT',
+            action: null,
+            link: '/link-to-chat',
+            icon: '/static/img/youtube.png' // путь к иконке
+        },
+        {
+            id: 'REFERRAL',
+            text: 'Пригласи 3 друзей',
+            reward: '+50,000 DCT',
+            action: null,
+            link: '/friends.html?user_id=' + userId,
+            icon: '/static/img/refer.png' // путь к иконке
+        },
+        {
+            id: 'PARTNER',
+            text: 'Наш партнер',
+            reward: '+100,000 DCT',
+            action: null,
+            link: '/link-to-partner',
+            icon: '/static/img/tg.png' // путь к иконке
+        },
+        {
+            id: 'FIRST_DEPOSIT',
+            text: 'Выполни первый депозит',
+            reward: '🔑 1 ключь',
+            action: null,
+            link: null, // Деактивируем кнопку
+            icon: '/static/img/kl.png' // путь к иконке
+        },
+        {
+            id: 'SECOND_DEPOSIT',
+            text: 'Повторный депозит',
+            reward: '🔑 1 ключь',
+            action: null,
+            link: null, // Деактивируем кнопку
+            icon: '/static/img/kl.png' // путь к иконке
+        }
+    ];
+
+    // Функция рендеринга задач
+    function renderTasks(taskStates) {
+        const taskList = document.getElementById('task-list');
+
+        tasks.forEach((task, index) => {
+            const taskItem = document.createElement('div');
+            taskItem.className = 'task-item';
+
+            if (task.icon) {
+                const icon = document.createElement('img');
+                icon.src = task.icon; // Используем путь к иконке
+                icon.alt = `Icon ${index + 1}`;
+                taskItem.appendChild(icon);
+            }
+
+            const taskText = document.createElement('div');
+            taskText.className = 'task-text';
+            taskText.textContent = task.text;
+            taskItem.appendChild(taskText);
+
+            const reward = document.createElement('div');
+            reward.className = 'reward';
+            reward.textContent = task.reward;
+            taskItem.appendChild(reward);
+
+            const button = document.createElement('button');
+            if (taskStates[task.id] && taskStates[task.id].completed) {
+                button.disabled = true;
+                button.textContent = 'Выполнено';
+                button.classList.add('disabled');
+            } else if (!task.link) {
+                button.disabled = true;
+                button.textContent = 'Недоступно';
+                button.classList.add('disabled');
+            } else {
+                button.textContent = 'Выполнить';
+                button.onclick = () => {
+                    if (task.action) task.action();
+                    if (task.link) window.location.href = task.link;
+                    button.disabled = true;
+                    button.textContent = 'Выполнено';
+                    button.classList.add('disabled');
+                    updateTaskState(task.id);
+                };
+            }
+
+            taskItem.appendChild(button);
+            taskList.appendChild(taskItem);
+        });
+    }
+
+    // Функция добавления баланса DCT
+    function addToBalance(amount) {
+        fetch('/add-balance', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                user_id: userId,
+                amount: amount
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(`На ваш баланс добавлено ${amount} DCT`);
+                fetchBalanceDCT(); // Обновление баланса DCT после добавления
+            } else {
+                alert('Ошибка добавления баланса: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Ошибка при добавлении баланса:', error);
+        });
+    }
+
+    // Функция для обновления состояния задачи в базе данных
+    function updateTaskState(taskId) {
+        fetch('/update-task-state', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                user_id: userId,
+                task_id: taskId,
+                completed: true
+            })
+        })
+        .catch(error => {
+            console.error('Ошибка при обновлении состояния задачи:', error);
+        });
+    }
+
+    // Функция для получения состояния задач с сервера
+    function fetchTaskStates() {
+        return fetch(`/task-states?user_id=${encodeURIComponent(userId)}`)
+            .then(response => response.json())
+            .catch(error => {
+                console.error('Ошибка при получении состояния задач:', error);
+                return {};
+            });
+    }
+
+    // Функция получения баланса DCT
+    function fetchBalanceDCT() {
+        fetch(`/balance/dct?user_id=${encodeURIComponent(userId)}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.balance !== undefined) {
+                    document.getElementById('balance-coin').textContent = ` ${data.balance} DCT`;
+                } else {
+                    console.error('Ошибка получения баланса DCT: ', data.message || 'Неизвестная ошибка');
+                }
+            })
+            .catch(error => {
+                console.error('Ошибка при выполнении запроса на сервер для DCT:', error);
+            });
+    }
+
+    // Функция получения баланса USDT
+    function fetchBalanceUSDT() {
+        fetch(`/balance/usdt?user_id=${encodeURIComponent(userId)}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.balance !== undefined) {
+                    document.getElementById('balance-usdt').textContent = ` ${data.balance} USDT`;
+                } else {
+                    console.error('Ошибка получения баланса USDT: ', data.message || 'Неизвестная ошибка');
+                }
+            })
+            .catch(error => {
+                console.error('Ошибка при выполнении запроса на сервер для USDT:', error);
+            });
+    }
+
+    // Функция обновления балансов
+    function updateBalances() {
+        fetchBalanceDCT();  // Запрашиваем баланс DCT
+        fetchBalanceUSDT(); // Запрашиваем баланс USDT
+    }
+
+    // Рендеринг задач и обновление балансов при загрузке страницы
+    window.onload = function() {
+        fetchTaskStates().then(taskStates => {
+            renderTasks(taskStates);
+            updateBalances(); // Обновляем балансы при загрузке страницы
+        });
+    };
+</script>
+
+
+</body>
+</html>
+

@@ -1,0 +1,7 @@
+quart
+SQLAlchemy
+aiogram
+apscheduler
+pytz
+aiohttp
+quart_sqlalchemy

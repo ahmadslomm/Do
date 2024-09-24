@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Project of Fortune</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            background-color: transparent;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            background: url('/static/img/fon.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: yellow;
+            overflow: hidden;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+
+        .balance-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .balance-container img {
+            width: 80px;
+            height: 80px;
+            margin-right: 10px;
+        }
+
+       .balance-text {
+    font-size: 2.8em;
+    color: black; /* Черный цвет */
+        font-weight: 900; /* Жирный шрифт */
+}
+
+        .wheel-container {
+            position: relative;
+            width: 600px; /* Увеличено в 1.5 раза */
+            height: 600px; /* Увеличено в 1.5 раза */
+            margin-top: -160px; /* Увеличено в 1.5 раза */
+            margin-left: -120px; /* Добавлено для сдвига влево */
+            perspective: 1500px; /* Увеличено в 1.5 раза */
+        }
+
+        .wheel {
+            width: 120%;
+            height: 120%;
+            border-radius: 50%;
+            background: conic-gradient(
+                from 90deg at 50% 50%,
+                #d32f2f 0% 8.33%, #ff8a80 8.33% 16.66%, /* Первый сектор */
+                #c2185b 16.66% 25%, #ff80ab 25% 33.33%, /* Второй сектор */
+                #7b1fa2 33.33% 41.66%, #ea80fc 41.66% 50%, /* Третий сектор */
+                #303f9f 50% 58.33%, #82b1ff 58.33% 66.66%, /* Четвертый сектор */
+                #0288d1 66.66% 75%, #81d4fa 75% 83.33%, /* Пятый сектор */
+                #00796b 83.33% 91.66%, #80cbc4 91.66% 100% /* Шестой сектор */
+            );
+            background-clip: padding-box;
+            box-shadow: 
+                inset 0 7.5px 15px rgba(255, 255, 255, 0.6),
+                inset 0 -7.5px 15px rgba(0, 0, 0, 0.4),
+                0 30px 45px rgba(0, 0, 0, 0.7);
+            transform-style: preserve-3d;
+            transition: transform 4s ease-out;
+        }
+
+       .wheel-segment {
+    position: absolute;
+    width: 60%; /* Размер сегмента */
+    height: 50%; /* Высота сегмента */
+    top: 50%;
+    left: 50%;
+    transform-origin: 0 0; /* Точка вращения - левый верхний угол */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.8em;
+    text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.8);
+    transform: translate(-50%, -50%); /* Центрирование текста внутри сегмента */
+}
+
+.wheel-segment:nth-child(1) { transform: rotate(0deg); color: #d32f2f; } /* 10000 DCT */
+.wheel-segment:nth-child(2) { transform: rotate(30deg); color: #ff8a80; } /* 10 USDT */
+.wheel-segment:nth-child(3) { transform: rotate(60deg); color: #c2185b; } /* 5000 DCT */
+.wheel-segment:nth-child(4) { transform: rotate(90deg); color: #ff80ab; } /* Ключ (раньше было 5 USDT) */
+.wheel-segment:nth-child(5) { transform: rotate(120deg); color: #7b1fa2; } /* 3000 DCT */
+.wheel-segment:nth-child(6) { transform: rotate(150deg); color: #ea80fc; } /* 3 USDT */
+.wheel-segment:nth-child(7) { transform: rotate(180deg); color: #303f9f; } /* 100000 DCT */
+.wheel-segment:nth-child(8) { transform: rotate(210deg); color: #82b1ff; } /* 1 USDT */
+.wheel-segment:nth-child(9) { transform: rotate(240deg); color: #0288d1; } /* 50000 DCT */
+.wheel-segment:nth-child(10) { transform: rotate(270deg); color: #81d4fa; } /* 0.5 USDT */
+.wheel-segment:nth-child(11) { transform: rotate(300deg); color: #00796b; } /* 5 USDT (раньше был Ключ) */
+.wheel-segment:nth-child(12) { transform: rotate(330deg); color: #80cbc4; } /* Ключ */
+
+.wheel-segment:nth-child(1) { /* Красный сегмент: 10000 DCT */
+    transform: rotate(60deg) translate(0, -90%); /* Было 0deg, стало 60deg */
+}
+
+.wheel-segment:nth-child(2) { /* Розовый сегмент: 10 USDT */
+    transform: rotate(90deg) translate(0, -90%); /* Было 30deg, стало 90deg */
+}
+
+.wheel-segment:nth-child(3) { /* Пурпурный сегмент: 5000 DCT */
+    transform: rotate(120deg) translate(0, -90%); /* Было 60deg, стало 120deg */
+}
+
+.wheel-segment:nth-child(4) { /* Фиолетовый сегмент: Ключ (раньше 5 USDT) */
+    transform: rotate(150deg) translate(0, -90%); /* Было 90deg, стало 150deg */
+}
+
+.wheel-segment:nth-child(5) { /* Синий сегмент: 3000 DCT */
+    transform: rotate(180deg) translate(0, -90%); /* Было 120deg, стало 180deg */
+}
+
+.wheel-segment:nth-child(6) { /* Голубой сегмент: 3 USDT */
+    transform: rotate(210deg) translate(0, -90%); /* Было 150deg, стало 210deg */
+}
+
+.wheel-segment:nth-child(7) { /* Темно-синий сегмент: 100000 DCT */
+    transform: rotate(240deg) translate(0, -90%); /* Было 180deg, стало 240deg */
+}
+
+.wheel-segment:nth-child(8) { /* Светло-синий сегмент: 1 USDT */
+    transform: rotate(270deg) translate(0, -90%); /* Было 210deg, стало 270deg */
+}
+
+.wheel-segment:nth-child(9) { /* Бирюзовый сегмент: 50000 DCT */
+    transform: rotate(300deg) translate(0, -90%); /* Было 240deg, стало 300deg */
+}
+
+.wheel-segment:nth-child(10) { /* Светло-бирюзовый сегмент: 0.5 USDT */
+    transform: rotate(330deg) translate(0, -90%); /* Было 270deg, стало 330deg */
+}
+
+.wheel-segment:nth-child(11) { /* Темно-зеленый сегмент: 5 USDT (раньше Ключ) */
+    transform: rotate(0deg) translate(0, -90%); /* Было 300deg, стало 0deg */
+}
+
+.wheel-segment:nth-child(12) { /* Светло-зеленый сегмент: Ключ */
+    transform: rotate(30deg) translate(0, -90%); /* Было 330deg, стало 30deg */
+}
+
+
+        .wheel-segment span {
+            position: absolute;
+            bottom: 225px; /* Увеличено в 1.5 раза */
+            width: 20%; /* Увеличено в 1.5 раза */
+            text-align: center;
+            transform-origin: center;
+            transform: rotate(45deg);
+            color: black; /* Установка черного цвета */
+            font-weight: bold; /* Установка жирного шрифта */
+        }
+
+        .pointer {
+            position: absolute;
+            top: -22.5px; /* Увеличено в 1.5 раза */
+            left: 60%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 30px solid transparent; /* Увеличено в 1.5 раза */
+            border-right: 30px solid transparent; /* Увеличено в 1.5 раза */
+            border-top: 60px solid silver; /* Увеличено в 1.5 раза */
+            z-index: 10;
+            filter: drop-shadow(0px 6px 9px rgba(0, 0, 0, 0.7));
+            background: linear-gradient(to bottom, #d3d3d3, #a9a9a9);
+            box-shadow:
+                0 3px 6px rgba(0, 0, 0, 0.5),
+                inset 0 1.5px 3px rgba(255, 255, 255, 0.5),
+                inset 0 -1.5px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .center-circle {
+            position: absolute;
+            top: calc(59% - -4.5px); /* Увеличено в 1.5 раза */
+            left: calc(60% + 0px);
+            transform: translate(-50%, -50%);
+            width: 120px; /* Увеличено в 1.5 раза */
+            height: 120px; /* Увеличено в 1.5 раза */
+            background: linear-gradient(to bottom, #fbc02d, #f57f17);
+            border-radius: 50%;
+            box-shadow: 
+                0 9px 22.5px rgba(0, 0, 0, 0.5),
+                inset 0 6px 9px rgba(255, 255, 255, 0.6),
+                inset 0 -6px 12px rgba(0, 0, 0, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8em; /* Увеличено в 1.5 раза */
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+        }
+
+        .center-circle:active {
+            transform: translate(-50%, -50%) scale(0.95);
+            box-shadow: 
+                0 6px 15px rgba(0, 0, 0, 0.5),
+                inset 0 3px 6px rgba(255, 255, 255, 0.6),
+                inset 0 -3px 6px rgba(0, 0, 0, 0.4);
+        }
+
+        .button-bar {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            padding: 15px 0; /* Увеличено в 1.5 раза */
+            background-color: #292b2c;
+            border-radius: 20px;
+            margin-top: 45px; /* Увеличено в 1.5 раза */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+            position: relative;
+            background-color: #292b2c;
+            font-size: 2.25em; /* Увеличено в 1.5 раза */
+        }
+
+        .button-bar::before {
+            content: "";
+            position: absolute;
+            top: -3px; /* Увеличено в 1.5 раза */
+            left: -3px; /* Увеличено в 1.5 раза */
+            right: -3px; /* Увеличено в 1.5 раза */
+            bottom: -3px; /* Увеличено в 1.5 раза */
+            border-radius: 20px;
+            border: 3px solid #1c1c1c; /* Увеличено в 1.5 раза */
+            z-index: -1;
+        }
+
+        .balance-container {
+            display: flex;
+            align-items: center;
+            margin-left: 30px; /* Увеличено в 1.5 раза */
+            font-size: 1.95em; /* Увеличено в 1.5 раза */
+            color: #FFD700;
+        }
+
+        .balance-container img {
+            width: 45px; /* Увеличено в 1.5 раза */
+            height: 45px; /* Увеличено в 1.5 раза */
+            margin-right: 7.5px; /* Увеличено в 1.5 раза */
+        }
+
+        .balance-text {
+            font-size: 1.5em; /* Увеличено в 1.5 раза */
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            padding: 30px 0;
+            background-color: rgba(41, 43, 44, 0.7);
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            position: relative;
+        }
+
+        .footer .custom-button {
+            background-color: #292b2c;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            color: #fff;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.4em;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+        }
+
+        .footer .custom-button img {
+            width: 60%;
+            height: auto;
+        }
+
+        .footer .custom-button:hover {
+            transform: scale(1.1);
+            background-color: #383838;
+        }
+
+        .footer .label {
+            font-size: 1em;
+            margin-top: 10px;
+            color: #fff;
+        }
+
+        @media (max-width: 480px) {
+            .footer .custom-button {
+                width: 80px;
+                height: 80px;
+                font-size: 1.2em;
+            }
+
+            .footer .label {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="balance-container">
+            <img src="/static/img/16.png" alt="Coin Logo">
+            <div class="balance-text" id="balance-coin">Баланс</div>
+        </div>
+        <div class="balance-container">
+            <img src="/static/img/usdt.png" alt="USDT Logo">
+            <div class="balance-text" id="balance-usdt">Баланс</div>
+        </div>
+    </div>
+    <p class="balance"><span id="balance">{{ balance }}</span> <img src="https://cryptologos.cc/logos/tether-usdt-logo.png" alt="USDT" style="height: 5.5em; vertical-align: middle;"></p>
+    <div class="wheel-container">
+        <div id="wheel" class="wheel">
+            <div class="wheel-segment"><span>10000 DCT</span></div>
+            <div class="wheel-segment"><span>10 USDT</span></div>
+            <div class="wheel-segment"><span>5000 DCT</span></div>
+            <div class="wheel-segment"><span>5 USDT</span></div>
+            <div class="wheel-segment"><span>3000 DCT</span></div>
+            <div class="wheel-segment"><span>3 USDT</span></div>
+            <div class="wheel-segment"><span>100000 DCT</span></div>
+            <div class="wheel-segment"><span>1 USDT</span></div>
+            <div class="wheel-segment"><span>50000 DCT</span></div>
+            <div class="wheel-segment"><span>0.5 USDT</span></div>
+            <div class="wheel-segment"><span>🔑</span></div>
+            <div class="wheel-segment"><span>🔑</span></div>
+        </div>
+        <div class="pointer"></div>
+        <div class="center-circle" onclick="checkAndSpin()">SPIN</div>
+    </div>
+  <div class="footer">
+        <button class="custom-button" onclick="window.location.href='/friends.html?user_id={{ user_id }}'">
+            <img src="static/img/friends.png" alt="Друзья">
+            <span class="label">Друзья</span>
+        </button>
+        <button class="custom-button" onclick="window.location.href='/mining.html?user_id={{ user_id }}'">
+            <img src="static/img/mining.png" alt="Майнинг">
+            <span class="label">Майнинг</span>
+        </button>
+        <button class="custom-button" onclick="window.location.href='/index.html?user_id={{ user_id }}'">
+            <img src="static/img/game.png" alt="Игра">
+            <span class="label">Игра</span>
+        </button>
+        <button class="custom-button" onclick="window.location.href='/task.html?user_id={{ user_id }}'">
+            <img src="static/img/task.png" alt="Задачи">
+            <span class="label">Задачи</span>
+        </button>
+        <button class="custom-button" onclick="window.location.href='/airdrop.html?user_id={{ user_id }}'">
+            <img src="static/img/Airdrop.png" alt="Airdrop">
+            <span class="label">Airdrop</span>
+        </button>
+    </div>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        Telegram.WebApp.ready();
+        Telegram.WebApp.expand();
+
+        const userId = "{{ user_id }}"; // Получаем ID пользователя
+
+        function checkAndSpin() {
+            fetch(`/check-eligibility?user_id=${encodeURIComponent(userId)}&action_type=FORTUNA`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.eligible) {
+                        spinWheel(); // Вращаем колесо, если доступно
+                    } else {
+                        alert(`Попробуйте снова через ${Math.ceil(data.remaining_time / 60)} минут.`);
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка при проверке возможности вращения:', error);
+                });
+        }
+
+        function spinWheel() {
+            const wheel = document.getElementById('wheel');
+            const sectors = 12;
+            const sectorDegree = 360 / sectors;
+            const winnings = [
+                const winnings = [
+    {type: 'dct', amount: 10000}, 
+    {type: 'usdt', amount: 10}, 
+    {type: 'dct', amount: 5000},
+    {type: 'key'},  /* Теперь ключ в фиолетовом сегменте */
+    {type: 'dct', amount: 3000},
+    {type: 'usdt', amount: 3},
+    {type: 'dct', amount: 100000},
+    {type: 'usdt', amount: 1},
+    {type: 'dct', amount: 50000},
+    {type: 'usdt', amount: 0.5},
+    {type: 'usdt', amount: 5},  /* Теперь 5 USDT в зелёном сегменте */
+    {type: 'key'}
+];
+            const randomSector = Math.floor(Math.random() * sectors);
+            const stopDegree = randomSector * sectorDegree + sectorDegree / 2;
+            const winningItem = winnings[randomSector];
+
+            const rotationDegree = 360 * 5 + stopDegree;
+
+            wheel.style.transition = 'transform 4s ease-out';
+            wheel.style.transform = `rotate(${rotationDegree}deg)`;
+
+            setTimeout(() => {
+                wheel.style.transition = 'none';
+                wheel.style.transform = `rotate(${stopDegree}deg)`;
+
+                updateBalance(winningItem);
+            }, 4000);
+        }
+
+        function updateBalance(winningItem) {
+            let requestBody = {
+                user_id: userId,
+                game_type: 'WHEEL'
+            };
+
+            if (winningItem.type === 'dct') {
+                requestBody.balance = winningItem.amount;
+                requestBody.type = 'DCT';
+            } else if (winningItem.type === 'usdt') {
+                requestBody.balance = winningItem.amount;
+                requestBody.type = 'USDT';
+            } else if (winningItem.type === 'key') {
+                requestBody.type = 'KEY';
+            }
+
+            fetch('/update_balance', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestBody)
+            }).then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert(`Ваш выигрыш: ${winningItem.amount || "Ключ от сундука"}`);
+                    if (winningItem.type === 'dct') {
+                        fetchBalanceDCT();
+                    } else if (winningItem.type === 'usdt') {
+                        fetchBalanceUSDT();
+                    }
+                } else {
+                    alert('Произошла ошибка при обновлении баланса');
+                }
+            });
+        }
+
+        function fetchBalanceDCT() {
+            fetch(`/balance/dct?user_id=${encodeURIComponent(userId)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.balance !== undefined) {
+                        document.getElementById('balance-coin').textContent = ` ${data.balance} DCT`;
+                    } else {
+                        console.error('Ошибка получения баланса DCT: ', data.message || 'Неизвестная ошибка');
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка при выполнении запроса на сервер для DCT:', error);
+                });
+        }
+
+        function fetchBalanceUSDT() {
+            fetch(`/balance/usdt?user_id=${encodeURIComponent(userId)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.balance !== undefined) {
+                        document.getElementById('balance-usdt').textContent = ` ${data.balance} USDT`;
+                    } else {
+                        console.error('Ошибка получения баланса USDT: ', data.message || 'Неизвестная ошибка');
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка при выполнении запроса на сервер для USDT:', error);
+                });
+        }
+
+        window.onload = function() {
+            fetchBalanceDCT();
+            fetchBalanceUSDT();
+        };
+    </script>
+</body>
+</html>

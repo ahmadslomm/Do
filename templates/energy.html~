@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scaleable=no">
+    <title>Energy Boost</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            background-color: transparent;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            background: url('/static/img/6.png') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: yellow;
+            overflow: hidden;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+
+        .balance-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .balance-container img {
+            width: 80px;
+            height: 80px;
+            margin-right: 10px;
+        }
+
+       .balance-text {
+    font-size: 2.8em;
+    color: black; /* Черный цвет */
+        font-weight: 900; /* Жирный шрифт */
+}
+
+       .energy-list {
+    width: 100%; /* Занимает всю ширину контейнера */
+
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.energy-list > .energy-item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #444;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.energy-list .energy-item:hover {
+    background-color: #555;
+}
+
+.energy-list .energy-item span {
+    font-size: 2.6em; /* Увеличен размер шрифта для лучшей читабельности */
+}
+
+
+        .footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 40px 0;
+    background-color: rgba(41, 43, 44, 0.7);
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    position: absolute; /* Абсолютное позиционирование */
+    bottom: 0; /* Футер будет находиться внизу страницы */
+    left: 0;
+}
+
+        .footer .custom-button {
+            background-color: #292b2c;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            color: #fff;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.4em;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            transition: fixed;
+            bottom: 0; /* Футер будет находиться внизу страницы */
+            left: 0;
+        }
+
+        .footer .custom-button img {
+            width: 60%;
+            height: auto;
+        }
+
+        .footer .custom-button:hover {
+            transform: scale(1.1);
+            background-color: #383838;
+        }
+
+        .footer .label {
+            font-size: 1em;
+            margin-top: 10px;
+            color: #fff;
+        }
+        @media (max-width: 480px) {
+            .balance-container img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .balance-text {
+                font-size: 1.8em;
+            }
+
+            .footer .custom-button {
+                width: 80px;
+                height: 80px;
+                font-size: 1.2em;
+            }
+
+            .footer .label {
+                font-size: 0.9em;
+            }
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="balance-container">
+    <div>
+        <img src="/static/img/16.png" alt="DCT Coin">
+        <span class="balance-text" id="balance-coin">Баланс: -- DCT</span>
+    </div>
+    <div>
+        <img src="/static/img/usdt.png" alt="USDT Coin">
+        <span class="balance-text" id="balance-usdt">Баланс: -- USDT</span>
+    </div>
+</div>
+        </div>
+
+        <div class="energy-list">
+            <div class="energy-item" onclick="purchaseEnergy(1, 0, 5000)">
+                <span>⚡ 1 уровень - бесплатно (5,000)</span>
+            </div>
+            <div class="energy-item" onclick="purchaseEnergy(2, 2000, 5500)">
+                <span>⚡ 2 уровень - 2,000 DCT (5,500)</span>
+            </div>
+            <div class="energy-item" onclick="purchaseEnergy(3, 4000, 6000)">
+                <span>⚡ 3 уровень - 4,000 DCT (6,000)</span>
+            </div>
+            <div class="energy-item" onclick="purchaseEnergy(4, 8000, 6500)">
+                <span>⚡ 4 уровень - 8,000 DCT (6,500)</span>
+            </div>
+            <div class="energy-item" onclick="purchaseEnergy(5, 16000, 7000)">
+                <span>⚡ 5 уровень - 16,000 DCT (7,000)</span>
+            </div>
+            <div class="energy-item" onclick="purchaseEnergy(6, 32000, 7500)">
+                <span>⚡ 6 уровень - 32,000 DCT (7,500)</span>
+            </div>
+            <div class="energy-item" onclick="purchaseEnergy(7, 64000, 8000)">
+                <span>⚡ 7 уровень - 64,000 DCT (8,000)</span>
+            </div>
+            <div class="energy-item" onclick="purchaseEnergy(8, 128000, 8500)">
+                <span>⚡ 8 уровень - 128,000 DCT (8,500)</span>
+            </div>
+            <div class="energy-item" onclick="purchaseEnergy(9, 256000, 9000)">
+                <span>⚡ 9 уровень - 256,000 DCT (9,000)</span>
+            </div>
+            <div class="energy-item" onclick="purchaseEnergy(10, 502000, 9500)">
+                <span>⚡ 10 уровень - 502,000 DCT (9,500)</span>
+            </div>
+            <div class="energy-item" onclick="purchaseEnergy(11, 1004000, 10000)">
+                <span>⚡ 11 уровень - 1,004,000 DCT (10,000)</span>
+            </div>
+            <div class="energy-item" onclick="purchaseEnergy(12, 2000000, 10500)">
+                <span>⚡ 12 уровень - 2,000,000 DCT (10,500)</span>
+            </div>
+            <div class="energy-item" onclick="purchaseEnergy(13, 4000000, 11000)">
+                <span>⚡ 13 уровень - 4,000,000 DCT (11,000)</span>
+            </div>
+            <div class="energy-item" onclick="purchaseEnergy(14, 8000000, 11500)">
+                <span>⚡ 14 уровень - 8,000,000 DCT (11,500)</span>
+            </div>
+            <div class="energy-item" onclick="purchaseEnergy(15, 16000000, 12000)">
+                <span>⚡ 15 уровень - 16,000,000 DCT (12,000)</span>
+            </div>
+        </div>
+        
+ <div class="footer">
+        <button class="custom-button" onclick="window.location.href='/friends.html?user_id={{ user_id }}'">
+            <img src="static/img/friends.png" alt="Друзья">
+            <span class="label">Друзья</span>
+        </button>
+        <button class="custom-button" onclick="window.location.href='/mining.html?user_id={{ user_id }}'">
+            <img src="static/img/mining.png" alt="Майнинг">
+            <span class="label">Майнинг</span>
+        </button>
+        <button class="custom-button" onclick="window.location.href='/index.html?user_id={{ user_id }}'">
+            <img src="static/img/game.png" alt="Игра">
+            <span class="label">Игра</span>
+        </button>
+        <button class="custom-button" onclick="window.location.href='/task.html?user_id={{ user_id }}'">
+            <img src="static/img/task.png" alt="Задачи">
+            <span class="label">Задачи</span>
+        </button>
+        <button class="custom-button" onclick="window.location.href='/airdrop.html?user_id={{ user_id }}'">
+            <img src="static/img/Airdrop.png" alt="Airdrop">
+            <span class="label">Airdrop</span>
+        </button>
+        </div>
+    </div>
+
+      <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>
+    Telegram.WebApp.ready();
+    Telegram.WebApp.expand();
+    
+        const userId = "{{ user_id }}"; // Получаем ID пользователя
+
+        function purchaseEnergy(level, cost, newClicks) {
+            if (confirm(`Вы уверены, что хотите приобрести ${level} уровень энергии за ${cost} DCT?`)) {
+                fetch('/purchase-energy', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        user_id: userId,
+                        level: level,
+                        cost: cost,
+                        new_clicks: newClicks
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(`Уровень ${level} энергии приобретен! Ваши клики обновлены до ${newClicks}.`);
+                        document.getElementById('balance-coin').textContent = `Баланс: ${data.new_balance} DCT`;
+                    } else {
+                        alert('Ошибка при покупке энергии: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка при выполнении запроса:', error);
+                });
+            }
+        }
+
+        function fetchBalances() {
+            fetch(`/balance/dct?user_id=${userId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const balanceCoinElement = document.getElementById('balance-coin');
+                    balanceCoinElement.textContent = `Баланс: ${data.balance} DCT`;
+                });
+
+            fetch(`/balance/usdt?user_id=${userId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const balanceUsdtElement = document.getElementById('balance-usdt');
+                    balanceUsdtElement.textContent = `Баланс: ${data.balance} USDT`;
+                });
+        }
+
+        window.onload = fetchBalances;
+    </script>
+</body>
+</html>

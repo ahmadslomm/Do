@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Генератор USDT</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            background-color: transparent;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            background: url('/static/img/Тесла.png') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: yellow;
+            overflow: hidden;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+
+        .balance-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .balance-container img {
+            width: 80px;
+            height: 80px;
+            margin-right: 10px;
+        }
+
+        .balance-text {
+    font-size: 2.8em;
+    color: black; /* Черный цвет */
+        font-weight: 900; /* Жирный шрифт */
+}
+
+        .generator-section {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 20px;
+            width: 87%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-size: 1.4em;
+        }
+
+        .generator-info {
+            flex-grow: 1;
+            margin-left: 20px;
+            font-size: 1.2em;
+            color: #FFD700;
+        }
+
+        .generator-info p {
+            font-size: 1.5em;
+        }
+
+        .generator-info .controls {
+            font-size: 1.8em;
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .income-bar,
+        .upgrade-bar {
+            background: #555;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: left;
+            width: 95%;
+            margin-bottom: 10px;
+            margin-left: 5%;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .start-mining {
+            background: #DAA520;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            font-size: 1.4em;
+            width: 30%;
+            text-decoration: none;
+            color: #000;
+        }
+
+         .footer {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            padding: 20px 0;
+            background-color: rgba(41, 43, 44, 0.7);
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            position: relative;
+        }
+
+        .footer .footer-button {
+            background-color: #292b2c;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            color: #fff;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+        }
+
+        .footer .footer-button img {
+            width: 60%;
+            height: auto;
+        }
+
+        .footer .footer-button:hover {
+            transform: scale(1.1);
+            background-color: #383838;
+        }
+
+        .footer .label {
+            font-size: 1em;
+            margin-top: 10px;
+            color: #fff;
+        }
+
+        @media (max-width: 480px) {
+            .balance-container img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .balance-text {
+                font-size: 1.8em;
+            }
+
+            .footer .footer-button {
+                width: 80px;
+                height: 80px;
+                font-size: 1.2em;
+            }
+
+            .footer .label {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+       <div class="balance-container">
+            <img src="/static/img/16.png" alt="Coin Logo">
+            <div class="balance-text" id="balance-coin">Баланс</div>
+        </div>
+        <div class="balance-container">
+            <img src="/static/img/usdt.png" alt="USDT Logo">
+            <div class="balance-text" id="balance-usdt">Баланс</div>
+        </div>
+    </div>
+
+    <div class="generator-section">
+        <div class="circle-container"></div>
+        <div class="generator-info">
+            <p>Зарабатывайте USDT в течение 3х часов.</p>
+            <div class="controls">
+                <div id="income-bar" class="income-bar">Доход в час 0.01 USDT</div>
+                <div id="upgrade-bar" class="upgrade-bar">Цена обновы 100 USDT</div>
+                <div id="energy-level" class="upgrade-bar">Уровень 1</div>
+            </div>
+            <div class="action-buttons">
+                <button id="start-mining-button" class="start-mining" onclick="startMining()">Майнинг</button>
+                <button class="start-mining" onclick="upgradeMining()">💎 Улучшить Майнинг</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <button class="footer-button" onclick="window.location.href='/friends.html?user_id={{ user_id }}'">
+            <img src="static/img/friends.png" alt="Друзья">
+            <span class="label">Друзья</span>
+        </button>
+        <button class="footer-button" onclick="window.location.href='/mining.html?user_id={{ user_id }}'">
+            <img src="static/img/mining.png" alt="Майнинг">
+            <span class="label">Майнинг</span>
+        </button>
+        <button class="footer-button" onclick="window.location.href='/index.html?user_id={{ user_id }}'">
+            <img src="static/img/game.png" alt="Игра">
+            <span class="label">Игра</span>
+        </button>
+        <button class="footer-button" onclick="window.location.href='/task.html?user_id={{ user_id }}'">
+            <img src="static/img/task.png" alt="Задачи">
+            <span class="label">Задачи</span>
+        </button>
+        <button class="footer-button" onclick="window.location.href='/airdrop.html?user_id={{ user_id }}'">
+            <img src="static/img/Airdrop.png" alt="Airdrop">
+            <span class="label">Airdrop</span>
+        </button>
+    </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const userId = '{{ user_id }}';
+        if (userId) {
+            fetchBalances(userId);
+            checkMiningStatus(userId);
+            fetchMiningInfo(userId);
+        } else {
+            console.error('User ID is undefined');
+        }
+    });
+
+function fetchBalances(userId) {
+    // Получение баланса DCT
+    fetch(`/balance/dct?user_id=${userId}`)
+        .then(response => response.json())
+        .then(data => {
+            const balanceCoinElement = document.getElementById('balance-coin');
+            if (balanceCoinElement) {
+                balanceCoinElement.textContent = `${data.balance.toFixed(3)} DCT`;
+            }
+        })
+        .catch(error => console.error('Ошибка получения баланса DCT:', error));
+
+    // Получение баланса USDT
+    fetch(`/balance/usdt?user_id=${userId}`)
+        .then(response => response.json())
+        .then(data => {
+            const balanceUsdtElement = document.getElementById('balance-usdt');
+            if (balanceUsdtElement) {
+                balanceUsdtElement.textContent = `${data.balance.toFixed(3)} USDT`;
+            }
+        })
+        .catch(error => console.error('Ошибка получения баланса USDT:', error));
+}
+
+    function fetchMiningInfo(userId) {
+        fetch(`/check-mining-status-usdt?user_id=${userId}`)
+            .then(response => response.json())
+            .then(data => {
+                const incomeBar = document.getElementById('income-bar');
+                const upgradeBar = document.getElementById('upgrade-bar');
+                const energyLevelElement = document.getElementById('energy-level');
+
+                incomeBar.textContent = `Доход в час ${data.hourly_income} USDT`;
+                upgradeBar.textContent = `Цена обновы ${data.next_upgrade_cost} USDT`;
+                energyLevelElement.textContent = `Уровень ${data.mining_level}`;
+            })
+            .catch(error => console.error('Ошибка:', error));
+    }
+
+    function startMining() {
+        const userId = '{{ user_id }}';
+        fetch('/start-mining-usdt', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ user_id: userId })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message === "Mining started") {
+                alert("Майнинг запущен!");
+                document.getElementById('start-mining-button').disabled = true;
+                document.getElementById('start-mining-button').textContent = "Майнинг идет...";
+            } else {
+                alert("Ошибка: " + data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Ошибка при запуске майнинга:', error);
+        });
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,154 @@
+/* Медиазапрос для экранов шириной до 768px (мобильные устройства и планшеты) */
+@media only screen and (max-width: 768px) {
+    html, body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(75, 0, 130, 0.8);
+        background-size: cover;
+        font-family: Arial, sans-serif;
+        color: #ffffff;
+        overflow: hidden;
+    }
+
+    .container {
+        position: relative;
+        z-index: 20;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        background: url('static/img/fon.jpg') no-repeat center center;
+        background-size: cover;
+        border-radius: 20px;
+        padding: 20px; /* Уменьшение внутреннего отступа */
+        box-shadow: 0 90px 90px rgba(0, 0, 0, 0.9), 0 0 40px rgba(0, 0, 0, 0.5) inset;
+        color: #ffffff;
+        height: 90%;
+        margin-top: -5px;
+    }
+
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 95%; /* Увеличение ширины */
+        padding: 5px 0;
+        background: linear-gradient(
+            to right, 
+            rgba(255, 255, 255, 0.3) 1%, 
+            rgba(25, 25, 112, 0.3) 20%, 
+            rgba(75, 0, 130, 0.2) 80%, 
+            rgba(255, 255, 255, 0.3) 99%
+        );
+        border-radius: 5px;
+        position: fixed;
+        top: 2%;
+        left: 2%;
+        right: 2%;
+        z-index: 1000;
+        overflow: hidden;
+    }
+
+    .header-logo {
+        width: 120px; /* Уменьшение размера логотипа */
+        height: 40px;
+        margin-left: 10px;
+    }
+
+    .balances {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: auto;
+        margin-right: 10px; /* Уменьшение отступа справа */
+    }
+
+    .balance-container img {
+        width: 25px; /* Уменьшение размера логотипа */
+        height: 25px;
+    }
+
+    .balance-text {
+        font-size: 1em; /* Уменьшение размера шрифта */
+    }
+
+    .balance-click {
+        font-size: 1em; /* Уменьшение размера шрифта */
+        margin-top: 50px; /* Уменьшение отступа сверху */
+        margin-left: 10px; /* Уменьшение отступа слева */
+    }
+
+    .logo-container {
+        width: 150px; /* Уменьшение ширины */
+        height: 150px; /* Уменьшение высоты */
+        margin-left: 50px; /* Уменьшение отступа слева */
+        margin-right: 50px; /* Уменьшение отступа справа */
+        margin-top: -20px; /* Уменьшение отступа сверху */
+        margin-bottom: 30px; /* Уменьшение отступа снизу */
+    }
+
+    .logo {
+        width: 100%;
+        height: 100%;
+    }
+
+    .level-container {
+        width: 100%; /* Увеличение ширины контейнера */
+        margin-bottom: 10px; /* Уменьшение отступа снизу */
+    }
+
+    .progress-bar-container {
+        width: 90%; /* Увеличение ширины прогресс-бара */
+        height: 20px; /* Уменьшение высоты прогресс-бара */
+        margin-left: 0; /* Центрирование прогресс-бара */
+    }
+
+    .level-title {
+        font-size: 0.9em; /* Уменьшение размера шрифта */
+        margin-left: 0; /* Уменьшение отступа слева */
+    }
+
+    .button-container {
+        gap: 10px; /* Уменьшение промежутка между кнопками */
+        margin-top: 10px; /* Уменьшение отступа сверху */
+    }
+
+    .button-label, .button-label-left, .button-label-right {
+        font-size: 1em; /* Уменьшение размера шрифта */
+        margin-top: -20px; /* Уменьшение отступа сверху */
+        margin-bottom: 5px; /* Уменьшение отступа снизу */
+    }
+
+    .round-button {
+        width: 70px; /* Уменьшение ширины */
+        height: 70px; /* Уменьшение высоты */
+    }
+
+    .round-button.sunduk {
+        left: -3px; /* Корректировка отступа слева */
+        top: -20px; /* Корректировка отступа сверху */
+    }
+
+    .round-button.fortune {
+        left: 40px; /* Корректировка отступа справа */
+        top: -20px; /* Корректировка отступа сверху */
+    }
+
+    .floating-message {
+        font-size: 1.2em; /* Уменьшение размера шрифта */
+    }
+
+    .energy, .boost {
+        width: 80px; /* Уменьшение ширины кнопок */
+        height: 80px; /* Уменьшение высоты кнопок */
+    }
+
+    .energy img, .boost img {
+        width: 30px; /* Уменьшение размера логотипа */
+        height: 30px;
+    }
+}

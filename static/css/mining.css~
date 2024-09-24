@@ -1,0 +1,507 @@
+html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(75, 0, 130, 0.8);
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            width: 38%;
+            max-width: 1200px;
+            background: linear-gradient(
+                to right, 
+                rgba(75, 0, 130, 0.8) 1%, 
+                rgba(25, 25, 112, 0.9) 20%, 
+                rgba(75, 0, 130, 0.8) 80%, 
+                rgba(75, 0, 130, 0.8) 99%
+            );
+            border-radius: 20px;
+            padding: 38%;
+            box-shadow: 0 180px 180px rgba(0, 0, 0, 0.9), 0 0 80px rgba(0, 0, 0, 0.5) inset;
+            color: #ffffff;
+            height: 100%;
+            min-height: 60%;
+            overflow: hidden;
+            margin-top: 10%;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%; 
+            padding: 5px 0;
+            background: linear-gradient(
+                to right, 
+                rgba(255, 255, 255, 0.3) 1%, 
+                rgba(25, 25, 112, 0.3) 20%, 
+                rgba(75, 0, 130, 0.2) 80%, 
+                rgba(255, 255, 255, 0.3) 99%
+            );
+            border-radius: 5px;
+            position: fixed;
+            top: 2%;
+            left: 5%;
+            right: 5%;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .header-logo {
+            width: 160px; 
+            height: 50px;
+            margin-left: 15px;
+        }
+
+        .header-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 0;
+            background-color: #191970;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .balances {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-left: auto;
+            margin-right: 20px;
+        }
+
+        .balance-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .balance-container img {
+            width: 30px;
+            height: 30px;
+            margin-right: 5px;
+        }
+
+        .balance-text {
+            font-size: 1.1em;
+            color: #FFFFFF;
+            font-weight: bold;
+        }
+
+        .avatar {
+            font-size: 1.2em;
+            color: #FFFFFF; 
+        }
+
+        .balance-click {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            color: #FFFFFF;
+            font-weight: bold;
+            margin-bottom: 10px;
+            margin-top: 90px !important;
+            margin-left: 0px !important;
+        }
+
+        .balance-click img.balance-logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px; /* Отступ справа от логотипа */
+        }
+
+        .balance {
+            font-size: 1.2em;
+            margin-right: 10px; /* Отступ справа от баланса */
+        }
+
+       .generator-section {
+    background: linear-gradient( to bottom, rgba(255, 255, 255, 0.9) 0%, rgba(105, 105, 105, 0.9) 50%, rgba(128, 128, 128, 0.8) 100% );
+    padding: 60%;
+    border-radius: 35px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+    width: 240%;
+    margin: 0 auto;
+    margin-left: -120%;
+    box-shadow: inset 0px 10px 15px rgba(0, 0, 0, 0.2), /* внутренняя тень сверху */ inset 0px -10px 15px rgba(0, 0, 0, 0.2);
+    margin-top: 40%;
+    position: relative;
+    top: -3%;
+    flex-direction: row;
+    max-width: 400%;
+    height: 5%;
+}
+
+        .generator-section::before {
+            content: '';
+            position: absolute;
+            top: -10px; /* Поднимите тень вверх */
+            left: 0;
+            right: 0;
+            height: 100%;
+            border-radius: 35px; /* Закругленные углы */
+            background: rgba(0, 0, 0, 0.2); /* Настройка цвета тени */
+            z-index: -1;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Усиленная тень */
+            transform: scaleX(0.95); /* Немного сжимаем тень по горизонтали, чтобы создать эффект поднятия краев */
+        }
+
+        .image-container {
+            flex-shrink: 0; /* Изображение не изменяет размеры контейнера */
+            margin-left: -75px; /* Отступ от изображения до текста */
+        }
+
+        .image-container img {
+            max-width: 120px; /* Ограничение максимального размера изображения */
+            height: auto;
+            display: block;
+        }
+
+        .text-container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: -40px;
+        }
+
+        .generator-title {
+            font-size: 1.2em;
+            color: #FFFFFF;
+            font-weight: bold;
+            text-align: center;
+            position: absolute;
+            top: 10px;
+            left: 55%;
+            transform: translateX(-50%);
+            white-space: nowrap; /* Запрещает перенос текста */
+        }
+
+        .generator-subtitle {
+            font-size: 0.65em;
+            color: #FFFFFF;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .first-line {
+            display: inline-block;
+            position: relative;
+            font-size: 1.2em;
+            text-align: right; /* Выравнивание первой строки по правому краю */
+            margin-right: -30px; /* Отступ справа между первой и второй строками */
+            top: 0px;
+        }
+
+        .movable-text {
+            display: inline-block;
+            position: relative;
+            margin-left: 20px; /* Настройте этот отступ для регулирования позиции текста */
+            font-size: 1.2em;
+        }
+
+        .movable-element {
+            width: 70px; /* Фиксированный размер элемента */
+            height: 35px;
+            background-color: #9370DB; /* Цвет элемента */
+            position: absolute; /* Позволяет перемещать элемент */
+            bottom: 10px; /* Отступ снизу */
+            right: 180px; /* Отступ справа */
+            cursor: pointer; /* Указывает, что элемент интерактивен */
+            border-radius: 15%; /* Делаем его круглым, если нужно */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Добавляем тень */
+            user-select: none; /* Запрещает выделение текста */
+        }
+
+        .level-text {
+            font-size: 14px; /* Размер шрифта текста */
+            color: #ffffff; /* Цвет текста */
+            position: absolute;
+            bottom: 20px; /* Отступ снизу */
+            right: 210px; /* Отступ справа */
+        }
+
+        .movable-elementB {
+            width: 70px; /* Фиксированный размер элемента */
+            height: 35px;
+            background-color: #9370DB; /* Цвет элемента */
+            position: absolute; /* Позволяет перемещать элемент */
+            bottom: 10px; /* Отступ снизу */
+            right: 100px; /* Отступ справа */
+            cursor: pointer; /* Указывает, что элемент интерактивен */
+            border-radius: 15%; /* Делаем его круглым, если нужно */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Добавляем тень */
+        }
+
+        .level-textB {
+            font-size: 14px; /* Размер шрифта текста */
+            color: #ffffff; /* Цвет текста */
+            text-align: center; /* Выравнивание текста по центру */
+            position: absolute;
+            bottom: 10px; /* Отступ снизу */
+            right: 102px; /* Отступ справа */
+        }
+
+        .movable-elementC {
+            width: 70px; /* Фиксированный размер элемента */
+            height: 35px;
+            background-color: #9370DB; /* Цвет элемента */
+            position: absolute; /* Позволяет перемещать элемент */
+            bottom: 1px; /* Отступ снизу */
+            right: -80px; /* Отступ справа */
+            cursor: pointer; /* Указывает, что элемент интерактивен */
+            border-radius: 15%; /* Делаем его круглым, если нужно */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Добавляем тень */
+        }
+
+        .level-textC {
+            font-size: 14px; /* Размер шрифта текста */
+            color: #ffffff; /* Цвет текста */
+            text-align: center; /* Выравнивание текста по центру */
+            position: absolute;
+            bottom: 1px; /* Отступ снизу */
+            right: -77px; /* Отступ справа */
+        }
+
+        .improve-button {
+    position: absolute;
+    top: 101%;
+    left: 15%;
+    padding: 15px 80px;
+    background-color: #9370DB;
+    color: #ffffff;
+    border: none;
+    border-radius: 15px;
+    font-size: 14px;
+    cursor: pointer;
+    z-index: 1200;
+    text-align: center;
+}
+
+        .improve-button:hover {
+            background-color: #7A1CB1; /* Темнее сиреневый цвет при наведении */
+        }
+
+       .generateUSDT-section {
+    background: linear-gradient( to bottom, rgba(255, 255, 255, 0.9) 0%, rgba(105, 105, 105, 0.9) 50%, rgba(128, 128, 128, 0.8) 100% );
+    padding: 60%;
+    border-radius: 35px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+    width: 240%;
+    margin: 0 auto;
+    margin-left: -120%;
+    box-shadow: inset 0px 10px 15px rgba(0, 0, 0, 0.2), /* внутренняя тень сверху */ inset 0px -10px 15px rgba(0, 0, 0, 0.2);
+    margin-top: 24%;
+    position: relative;
+    top: 10px;
+    flex-direction: column;
+    height: 5%;
+    max-width: 400%;
+}
+
+        .generateUSDT-section img {
+            max-width: 28%; /* Ограничивает размер изображения по ширине контейнера */
+            height: auto; /* Сохраняет пропорции изображения */
+            position: absolute; /* Позволяет перемещать изображение в пределах контейнера */
+            top: 10px; /* Поднимает изображение вверх */
+            left: -5px; /* Перемещает изображение влево */
+            margin: 1px; /* Добавляет отступ внутри контейнера */
+        }
+
+        .generateUSDT-section::before {
+            content: '';
+            position: absolute;
+            top: -10px; /* Поднимите тень вверх */
+            left: 0;
+            right: 0;
+            height: 100%;
+            border-radius: 35px; /* Закругленные углы */
+            background: rgba(0, 0, 0, 0.2); /* Настройка цвета тени */
+            z-index: -1;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Усиленная тень */
+            transform: scaleX(0.95); /* Немного сжимаем тень по горизонтали, чтобы создать эффект поднятия краев */
+        }
+
+        .generateUSDT-title {
+            font-size: 1.2em;
+            color: #FFFFFF;
+            font-weight: bold;
+            text-align: center;
+            position: absolute;
+            top: 10px;
+            left: 55%;
+            transform: translateX(-50%);
+            white-space: nowrap; /* Запрещает перенос текста */
+        }
+
+        .generateUSDT-subtitle {
+            font-size: 0.65em;
+            color: #FFFFFF;
+            font-weight: bold;
+            
+        }
+
+        .first-line1 {
+    display: inline-block;
+    position: relative;
+    text-align: right;
+    margin-left: 25px;
+    font-size: 1.2em;
+    top: 5px;
+}
+
+        .movable-text1 {
+            display: inline-block;
+            position: relative;
+            margin-left: 25px;
+            font-size: 1.2em;
+            top: 5px; /* Настройте этот отступ для регулирования позиции текста */
+        }
+
+        .movable-elementA {
+            width: 70px; /* Фиксированный размер элемента */
+            height: 35px;
+            background-color: #9370DB; /* Цвет элемента */
+            position: absolute; /* Позволяет перемещать элемент */
+            bottom: 10px; /* Отступ снизу */
+            right: 180px; /* Отступ справа */
+            cursor: pointer; /* Указывает, что элемент интерактивен */
+            border-radius: 15%; /* Делаем его круглым, если нужно */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Добавляем тень */
+        }
+
+        .level-textA {
+            font-size: 14px; /* Размер шрифта текста */
+            color: #ffffff; /* Цвет текста */
+            position: absolute;
+            bottom: 20px; /* Отступ снизу */
+            right: 210px; /* Отступ справа */
+        }
+
+        .movable-elementD {
+            width: 70px; /* Фиксированный размер элемента */
+            height: 35px;
+            background-color: #9370DB; /* Цвет элемента */
+            position: absolute; /* Позволяет перемещать элемент */
+            bottom: 10px; /* Отступ снизу */
+            right: 100px; /* Отступ справа */
+            cursor: pointer; /* Указывает, что элемент интерактивен */
+            border-radius: 15%; /* Делаем его круглым, если нужно */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Добавляем тень */
+        }
+
+        .level-textD {
+            font-size: 14px; /* Размер шрифта текста */
+            color: #ffffff; /* Цвет текста */
+            text-align: center; /* Выравнивание текста по центру */
+            position: absolute;
+            bottom: 10px; /* Отступ снизу */
+            right: 102px; /* Отступ справа */
+        }
+
+        .movable-elementE {
+            width: 70px; /* Фиксированный размер элемента */
+            height: 35px;
+            background-color: #9370DB; /* Цвет элемента */
+            position: absolute; /* Позволяет перемещать элемент */
+            bottom: 1px; /* Отступ снизу */
+            right: -80px; /* Отступ справа */
+            cursor: pointer; /* Указывает, что элемент интерактивен */
+            border-radius: 15%; /* Делаем его круглым, если нужно */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Добавляем тень */
+        }
+
+        .level-textE {
+            font-size: 14px; /* Размер шрифта текста */
+            color: #ffffff; /* Цвет текста */
+            text-align: center; /* Выравнивание текста по центру */
+            position: absolute;
+            bottom: 1px; /* Отступ снизу */
+            right: -80px; /* Отступ справа */
+        }
+
+        .improve-buttonC {
+    position: absolute;
+    top: 101%;
+    left: 20px;
+    padding: 15px 15px;
+    background-color: #9370DB;
+    color: #ffffff;
+    border: none;
+    border-radius: 15px;
+    font-size: 14px;
+    cursor: pointer;
+    z-index: 1200;
+    text-align: center;
+}
+
+        .improve-buttonC:hover {
+            background-color: #7A1CB1; /* Темнее сиреневый цвет при наведении */
+        }
+
+        .improve-buttonD {
+    position: absolute;
+    top: 101%;
+    left: 190px;
+    padding: 15px 20px;
+    background-color: #9370DB;
+    color: #ffffff;
+    border: none;
+    border-radius: 15px;
+    font-size: 14px;
+    cursor: pointer;
+    z-index: 1200;
+    text-align: center;
+}
+
+        .improve-buttonD:hover {
+            background-color: #7A1CB1; /* Темнее сиреневый цвет при наведении */
+        }
+
+        .start-mining {
+            background: #DAA520;
+            padding: 8px;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 2.5px 7.5px rgba(0, 0, 0, 0.3);
+            font-size: 0.9em;
+            width: 45%;
+            color: #000;
+        }
+       .improve-buttonE {
+    width: 250px; /* Задаём фиксированную ширину кнопки */
+    height: 50px; /* Задаём фиксированную высоту кнопки */
+    margin-left: -90%;
+    background-color: #9370DB;
+    color: #ffffff;
+    border: none;
+    border-radius: 15px;
+    font-size: 14px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 50px; /* Устанавливаем line-height, чтобы текст был по центру вертикально */
+    margin-top: 60px; /* Отступ сверху */
+}
+

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Генератор Duck Crest</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/mining.css') }}">
+<link rel="preload" href="/static/footer.css" as="style" onload="this.rel='stylesheet'">
+<link rel="stylesheet" href="static/css/1/mining-mobile.css" media="only screen and (max-width: 768px)">
+<link rel="stylesheet" href="/static/modal.css">
+</head>
+<body>
+   <div class="container">
+        <div class="header-container">
+            <img src="/static/img/love.png" alt="Logo" class="header-logo">
+            <div class="balances">
+                <div class="balance-container">
+                    <img src="/static/img/16.png" alt="Coin Logo">
+                    <div class="balance-text" id="balance-coin">Баланс</div>
+                </div>
+                <div class="balance-container">
+                    <img src="/static/img/usdt.png" alt="USDT Logo">
+                    <div class="balance-text" id="balance-usdt">Баланс</div>
+                </div>
+            </div>
+            <div class="avatar">
+                {% if avatar_url %}
+                    <img src="{{ avatar_url }}" alt="{{ telegram_username }}" style="width: 50px; height: 50px; border-radius: 50%;">
+                {% else %}
+                    {{ telegram_username }}
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="balance-click">
+            <img src="/static/img/13.png" alt="Logo" class="balance-logo">
+            <div class="balance"><span id="balance">0</span></div>
+        </div>
+
+        <div class="generator-section">
+            <div class="image-container">
+                <img src="/static/img/utki.png" alt="Утка">
+            </div>
+            <button class="improve-button">Улучшить</button>
+            <div class="text-container">
+                <div class="generator-title">Генератор Duck Credits</div>
+                <div class="generator-subtitle">
+                    <span class="first-line">Улучшайте генератор</span>
+                    <span class="movable-text">для пассивной добычи монет DCT</span>
+                </div>
+            </div>
+            <div class="movable-element"></div>
+            <span class="level-text">Ур.1</span>
+            <div class="movable-elementB"></div>
+            <span class="level-textB">
+                <span>Добыча в </span><br>
+                <span>час 150</span>
+            <div class="movable-elementC"></div>
+            <span class="level-textC">
+                <span>Цена обн.</span><br>
+                <span>1000</span>
+            </div>
+
+                <div class="generateUSDT-section">
+                    <img src="/static/img/gora.png" alt="Утка">
+                    <button class="improve-buttonC">Построить 350 USDT</button>
+                    <button class="improve-buttonD">улучшить</button>
+                    <div id="upgradeModal" class="modal" style="display: none;">
+                        <div class="modal-content">
+                            <span class="close-button">&times;</span>
+                            <img src="/static/img/gora.png" alt="Upgrade Image" class="modal-logo">
+                            <h2>Улучшение невозможно</h2>
+                            <p>Сначала постройте Генератор USDT. Цена постройки 350 USDT</p>
+                        </div>
+                    </div>
+                    <div class="generateUSDT-title">Генератор USDT</div>
+                    <div class="generateUSDT-subtitle">
+                        <span class="first-line1">Улучшайте генератор USDT</span><br>  
+                        <span class="movable-text1">для пассивной добычи монет.</span>
+                    </div>
+                    <div class="movable-elementA"></div>
+                    <span class="level-textA">Ур.1</span>
+                    <div class="movable-elementD"></div>
+                    <span class="level-textD">
+                        <span>Добыча в </span><br>
+                        <span>час 0</span>
+                    
+                    <div class="movable-elementE"></div> 
+                    <span class="level-textE">
+                        <span>Цена обн.</span><br>
+                        <span>350 USDT</span>
+                    </span>
+                </div>
+                  <button class="improve-buttonE" onclick="window.location.href='/ex.html?user_id={{ user_id }}'">Биржа</button>
+                </div>
+
+        <div class="footer">
+            <button class="custom-button" onclick="window.location.href='/friends.html?user_id={{ user_id }}'">
+                <img src="/static/img/friends.png" alt="Друзья">
+                <span class="label">Друзья</span>
+            </button>
+            <button class="custom-button" onclick="window.location.href='/mining.html?user_id={{ user_id }}'">
+                <img src="/static/img/mining.png" alt="Майнинг">
+                <span class="label">Майнинг</span>
+            </button>
+            <button class="custom-button" onclick="window.location.href='/index.html?user_id={{ user_id }}'">
+                <img src="/static/img/game.png" alt="Игра">
+                <span class="label">Игра</span>
+            </button>
+            <button class="custom-button" onclick="window.location.href='/task.html?user_id={{ user_id }}'">
+                <img src="/static/img/task.png" alt="Задачи">
+                <span class="label">Задачи</span>
+            </button>
+            <button class="custom-button" onclick="window.location.href='/airdrop.html?user_id={{ user_id }}'">
+                <img src="/static/img/16.png" alt="Airdrop">
+                <span class="label">Airdrop</span>
+            </button>
+        </div>
+    </div>
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>
+    Telegram.WebApp.ready();
+    Telegram.WebApp.expand();
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        const modal = document.getElementById('upgradeModal');
+        const btn = document.querySelector('.improve-buttonD');
+        const span = document.querySelector('.close-button');
+
+        // Когда пользователь нажимает на кнопку, откройте модальное окно
+        if (btn) {
+            console.log('Button found');
+            btn.addEventListener('click', () => {
+                console.log('Button clicked');
+                modal.style.display = "block";
+            });
+        } else {
+            console.log('Button not found');
+        }
+
+        // Когда пользователь нажимает на <span> (x), закройте модальное окно
+        span.addEventListener('click', () => {
+            modal.style.display = "none";
+        });
+
+        // Когда пользователь нажимает где угодно за пределами модального окна, закройте его
+        window.addEventListener('click', (event) => {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const userId = '{{ user_id }}';
+        if (userId) {
+            fetchBalances(userId);
+            fetchEnergyLevel(userId);
+            checkMiningStatus(userId);
+            fetchMiningInfo(userId);
+
+            // Запускаем интервал для проверки статуса майнинга каждые 10 секунд
+            setInterval(() => {
+                checkMiningStatus(userId);
+            }, 10000);
+        } else {
+            console.error('User ID is undefined');
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const exchangeButton = document.querySelector('.improve-buttonB');
+        const modal = document.getElementById('exchangeModal');
+
+        exchangeButton.addEventListener('click', () => {
+            modal.classList.add('show'); // Показать модальное окно
+        });
+
+        // Закрытие модального окна по клику на него
+        modal.addEventListener('click', () => {
+            modal.classList.remove('show'); // Скрыть модальное окно
+        });
+    });
+
+    function fetchBalances(userId) {
+        fetch(`/balance/dct?user_id=${userId}`)
+            .then(response => response.json())
+            .then(data => {
+                const balanceCoinElement = document.getElementById('balance-coin');
+                balanceCoinElement.textContent = `${data.balance.toFixed(3)} `;
+            });
+
+        fetch(`/balance/usdt?user_id=${userId}`)
+            .then(response => response.json())
+            .then(data => {
+                const balanceUsdtElement = document.getElementById('balance-usdt');
+                balanceUsdtElement.textContent = `${data.balance.toFixed(3)} `;
+            });
+    }
+
+    function fetchMiningInfo(userId) {
+        fetch(`/check-mining-status?user_id=${userId}`)
+            .then(response => response.json())
+            .then(data => {
+                const incomeBar = document.getElementById('income-bar');
+                const upgradeBar = document.getElementById('upgrade-bar');
+                const energyLevelElement = document.getElementById('energy-level');
+
+                incomeBar.textContent = `Доход в час ${data.hourly_income} DCT`;
+                upgradeBar.textContent = `Цена Обновы ${data.next_upgrade_cost} DCT`;
+                energyLevelElement.textContent = `Уровень ${data.mining_level}`;
+            })
+            .catch(error => console.error('Ошибка:', error));
+    }
+
+    function startMining() {
+        const userId = parseInt('{{ user_id }}', 10);  // Преобразуем в число
+        fetch('/start-mining', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ user_id: userId })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.message === "Mining started") {
+                alert("Майнинг запущен!");
+                document.getElementById('start-mining-button').disabled = true;
+                document.getElementById('start-mining-button').textContent = "Майнинг идет...";
+                checkMiningStatus(userId);
+            } else {
+                alert("Ошибка: " + data.error);
+            }
+        })
+        .catch(error => {
+            console.error('Ошибка при запуске майнинга:', error);
+        });
+    }
+
+    function checkMiningStatus(userId) {
+        fetch(`/check-mining-status?user_id=${userId}`)
+            .then(response => response.json())
+            .then(data => {
+                const startMiningButton = document.getElementById('start-mining-button');
+                if (data.mining_active) {
+                    startMiningButton.disabled = true;
+                    startMiningButton.textContent = "Майнинг идет...";
+                } else {
+                    startMiningButton.disabled = false;
+                    startMiningButton.textContent = "Майнинг";
+                }
+            })
+            .catch(error => console.error('Ошибка:', error));
+    }
+
+    function updateMiningStatusDisplay(startMinedTokens, balancePerSecond) {
+        const minedTokensElement = document.getElementById('mined-tokens');
+        let currentMinedTokens = startMinedTokens;
+        setInterval(() => {
+            currentMinedTokens += balancePerSecond;
+            minedTokensElement.textContent = `${currentMinedTokens.toFixed(3)} DCT`;
+        }, 1000);
+    }
+
+    function upgradeMining() {
+        const userId = '{{ user_id }}';
+        fetch('/upgrade-mining', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ user_id: userId })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(`Уровень повышен до ${data.new_level}! Новый доход в час: ${data.new_income} DCT.`);
+                fetchMiningInfo(userId);
+            } else {
+                alert(`Ошибка апгрейда: ${data.message}`);
+            }
+        })
+        .catch(error => console.error('Ошибка:', error));
+    }
+
+    function calculateUSDT() {
+        const dctInput = document.getElementById('dct-input').value;
+        const usdtOutput = document.getElementById('usdt-output');
+        const exchangeRate = 1000000;
+
+        if (dctInput) {
+            const usdtValue = (dctInput / exchangeRate) * 100;
+            usdtOutput.value = `${usdtValue.toFixed(2)} `;
+        } else {
+            usdtOutput.value = '0 USDT';
+        }
+    }
+
+    function exchangeTokens() {
+        const dctInput = parseFloat(document.getElementById('dct-input').value);
+
+        if (isNaN(dctInput) || dctInput <= 0) {
+            alert('Введите корректное количество DCT для обмена.');
+            return;
+        }
+
+        const userId = '{{ user_id }}';
+
+        fetch(`/exchange-tokens`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                user_id: userId,
+                dct_amount: dctInput
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert(`Успешно обменяно на ${data.usdt_amount.toFixed(2)} USDT`);
+                document.getElementById('balance-coin').textContent = `Баланс: ${data.new_dct_balance.toFixed(3)} DCT`;
+                document.getElementById('balance-usdt').textContent = `Баланс: ${data.new_usdt_balance.toFixed(3)} USDT`;
+            } else {
+                alert('Ошибка обмена: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Ошибка при обмене токенов:', error);
+            alert('Ошибка обмена: ' + error.message);
+        });
+    }
+</script>
+</body>
+</html>

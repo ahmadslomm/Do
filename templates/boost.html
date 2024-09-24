@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Boost Boost</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('/static/img/6.png') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: #FFD700; /* Золотистый цвет */
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 20px;
+            padding: 20px;
+            width: 90%;
+            height: 50%;
+            padding-bottom: 300px; /* Уменьшенный отступ снизу */
+            max-width: 500px;
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            background: url('static/img/fon.jpg') no-repeat center center;
+            background-size: cover;
+            color: #ffffff;
+            margin-top: 0px;
+            position: relative;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .balance-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .balance-container img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .balance-text {
+            font-size: 1.5em;
+            color: #FFD700;
+            font-weight: bold;
+        }
+
+        .boost-list {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+            max-height: 400px;
+            overflow-y: auto;
+            color: #ffffff;
+        }
+
+        .boost-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            border: 2px solid #FFD700;
+            background-color: rgba(105, 105, 105, 0.8);
+            margin-bottom: 10px;
+            border-radius: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .boost-item:hover {
+            background-color: #555;
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Удалены стили для футера и кнопок, они теперь находятся в footer.css */
+    </style>
+<link rel="preload" href="/static/footer.css" as="style" onload="this.rel='stylesheet'">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="balance-container">
+                <img src="/static/img/16.png" alt="DCT Coin">
+                <span class="balance-text" id="balance-coin"> -- DCT</span>
+            </div>
+            <div class="balance-container">
+                <img src="/static/img/usdt.png" alt="USDT Coin">
+                <span class="balance-text" id="balance-usdt"> -- USDT</span>
+            </div>
+        </div>
+
+        <div class="boost-list">
+            <div class="boost-item" onclick="buyBoost(1, 0, 5000)">
+                <span>🚀 1 Ур - бесплатно (1 DCR 👆🏻)</span>
+            </div>
+            <div class="boost-item" onclick="buyBoost(2, 2000, 5500)">
+                <span>🚀 2 Ур - 5,000 DCT (2 DCR 👆🏻)</span>
+            </div>
+            <div class="boost-item" onclick="buyBoost(3, 4000, 6000)">
+                <span>🚀 3 Ур - 10,000 DCT (4 DCR 👆🏻)</span>
+            </div>
+            <div class="boost-item" onclick="buyBoost(4, 8000, 6500)">
+                <span>🚀 4 Ур - 13,000 DCT (6 DCR 👆🏻)</span>
+            </div>
+            <div class="boost-item" onclick="buyBoost(5, 16000, 7000)">
+                <span>🚀 5 Ур - 26,000 DCT (8 DCR 👆🏻)</span>
+            </div>
+            <div class="boost-item" onclick="buyBoost(6, 32000, 7500)">
+                <span>🚀 6 Ур - 52,000 DCT (10 DCT 👆🏻)</span>
+            </div>
+            <div class="boost-item" onclick="buyBoost(7, 64000, 8000)">
+                <span>🚀 7 Ур - 104,000 DCT (12 DCT 👆🏻)</span>
+            </div>
+            <div class="boost-item" onclick="buyBoost(8, 128000, 8500)">
+                <span>🚀 8 Ур - 208,000 DCT (13 DCT 👆🏻)</span>
+            </div>
+            <div class="boost-item" onclick="buyBoost(9, 256000, 9000)">
+                <span>🚀 9 Ур - 416,000 DCT (14 DCT 👆🏻)</span>
+            </div>
+            <div class="boost-item" onclick="buyBoost(10, 512000, 9500)">
+                <span>🚀 10 Ур - 832,000 DCT (15 DCT 👆🏻)</span>
+            </div>
+            <div class="boost-item" onclick="buyBoost(11, 1024000, 10000)">
+                <span>🚀 11 Ур - 1.664.000 DCT (20 DCT 👆🏻)</span>
+            </div>
+            <div class="boost-item" onclick="buyBoost(12, 2048000, 10500)">
+                <span>🚀 12 Ур - 3.328.000 DCT (21 DCT 👆🏻)</span>
+            </div>
+            <div class="boost-item" onclick="buyBoost(13, 4096000, 11000)">
+                <span>🚀 13 Ур - 6.656.000 DCT (22 DCT 👆🏻)</span>
+            </div>
+        </div>
+
+        <div class="footer">
+            <button class="custom-button" onclick="window.location.href='/friends.html?user_id={{ user_id }}'">
+                <img src="static/img/friends.png" alt="Друзья">
+                <span class="label">Друзья</span>
+            </button>
+            <button class="custom-button" onclick="window.location.href='/mining.html?user_id={{ user_id }}'">
+                <img src="static/img/mining.png" alt="Майнинг">
+                <span class="label">Майнинг</span>
+            </button>
+            <button class="custom-button" onclick="window.location.href='/index.html?user_id={{ user_id }}'">
+                <img src="static/img/game.png" alt="Игра">
+                <span class="label">Игра</span>
+            </button>
+            <button class="custom-button" onclick="window.location.href='/task.html?user_id={{ user_id }}'">
+                <img src="static/img/task.png" alt="Задачи">
+                <span class="label">Задачи</span>
+            </button>
+            <button class="custom-button" onclick="window.location.href='/airdrop.html?user_id={{ user_id }}'">
+            <img src="static/img/6.png" alt="Airdrop">
+            <span class="label">USDT Майнинг</span>
+        </button>
+        </div>
+    </div>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+    Telegram.WebApp.ready();
+    Telegram.WebApp.expand();
+    
+        function buyBoost(level, cost) {
+            const userId = '{{ user_id }}'; // Здесь user_id будет передан сервером
+
+            if (confirm(`Вы уверены, что хотите приобрести ${level} уровень за ${cost} DCT?`)) {
+                fetch('/buy-boost', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        user_id: userId,
+                        level: level,
+                        cost: cost
+                    })
+                }).then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(`Вы успешно приобрели ${level} уровень!`);
+                        fetchBalances(userId); // Обновляем баланс
+                    } else {
+                        alert(`Ошибка: ${data.message}`);
+                    }
+                });
+            }
+        }
+
+        function fetchBalances(userId) {
+            fetch(`/balance/dct?user_id=${userId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const balanceCoinElement = document.getElementById('balance-coin');
+                    balanceCoinElement.textContent = `${data.balance} DCT`;
+                });
+
+            fetch(`/balance/usdt?user_id=${userId}`)
+                .then(response => response.json())
+                .then(data => {
+                    const balanceUsdtElement = document.getElementById('balance-usdt');
+                    balanceUsdtElement.textContent = `${data.balance} USDT`;
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const userId = '{{ user_id }}';
+            fetchBalances(userId);
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,54 @@
+.footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 5px 0;
+    background-color: rgba(41, 43, 44, 0.7);
+    border-radius: 5px; /* Округление для футера */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7); /* Тень для футера */
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden; /* Для того чтобы псевдоэлементы не выходили за границы */
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 5px; /* Радиус окружности */
+    border: 2px solid rgba(255, 255, 255, 0.3); /* Цвет и прозрачность границы */
+    z-index: 1; /* Псевдоэлемент будет выше основного содержимого */
+    pointer-events: none; /* Псевдоэлемент не будет влиять на события мыши */
+}
+
+.footer .custom-button {
+    background-color: transparent; /* Убираем фон кнопки */
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    color: #fff;
+    width: auto; /* Убираем фиксированную ширину */
+    height: auto; /* Убираем фиксированную высоту */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1em;
+    box-shadow: none; /* Убираем тени */
+}
+
+.footer .custom-button img {
+    width: 40px; /* Устанавливаем размер логотипа */
+    height: auto;
+}
+
+.footer .label {
+    font-size: 0.8em;
+    margin-top: 1px;
+    color: #fff;
+}
+

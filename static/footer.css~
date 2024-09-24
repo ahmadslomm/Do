@@ -1,0 +1,88 @@
+.footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 5px 0;
+    background: linear-gradient(
+        to right, 
+        rgba(255, 255, 255) 1%, /* Белая тень слева */
+        rgba(25, 25, 112, 0.9) 20%, /* Переход к основному цвету */
+        rgba(75, 0, 130, 0.8) 80%, /* Основной цвет фона */
+        rgba(255, 255, 255) 99% /* Белая тень справа */
+    );
+    border-radius: 5px;
+    box-shadow: 0 180px 180px rgba(0, 0, 0, 0.9), 0 0 80px rgba(0, 0, 0, 0.5) inset;
+    position: fixed; /* Фиксируем футер */
+    bottom: 0; /* Закрепляем футер внизу страницы */
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Задаем высокий z-index, чтобы футер был выше других элементов */
+    overflow: hidden;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: #191970;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.footer::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #FFFFFF;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.footer::before,
+.footer::after {
+    border-radius: 15px;
+}
+
+.footer::after {
+    box-shadow: 0px 50px 100px rgba(0, 0, 0, 0.9);
+}
+
+.footer .custom-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    color: #fff;
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1em;
+    box-shadow: none;
+}
+
+.footer .custom-button img {
+    width: 50px;
+    height: auto;
+    transition: transform 0.3s ease; /* Плавный переход для изменения размера */
+}
+
+.footer .custom-button:hover img {
+    transform: scale(1.2); /* Увеличение логотипа при наведении */
+}
+}
+
+.footer .label {
+    font-size: 0.8em;
+    margin-top: 1px;
+    color: #fff;
+}

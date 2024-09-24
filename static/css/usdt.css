@@ -1,0 +1,164 @@
+.exchange-section {
+    background: linear-gradient( to bottom, rgba(255, 255, 255, 0.9) 0%, rgba(105, 105, 105, 0.9) 50%, rgba(128, 128, 128, 0.8) 100% );
+    padding: 62px;
+    border-radius: 35px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+    width: 240%;
+    margin: 0 auto;
+    margin-left: -120px;
+    box-shadow: inset 0px 10px 15px rgba(0, 0, 0, 0.2), /* внутренняя тень сверху */ inset 0px -10px 15px rgba(0, 0, 0, 0.2);
+    margin-top: 10%;
+    position: relative;
+    flex-direction: column;
+    height: 3px;
+    max-width: 390px;
+}
+
+        .exchange-section img {
+            max-width: 31%; /* Ограничивает размер изображения по ширине контейнера */
+            height: auto; /* Сохраняет пропорции изображения */
+            position: absolute; /* Позволяет перемещать изображение в пределах контейнера */
+            top: 10px; /* Поднимает изображение вверх */
+            left: -10px; /* Перемещает изображение влево */
+            margin: 1px; /* Добавляет отступ внутри контейнера */
+        }
+
+        .exchange-section::before {
+            content: '';
+            position: absolute;
+            top: -10px; /* Поднимите тень вверх */
+            left: 0;
+            right: 0;
+            height: 100%;
+            border-radius: 35px; /* Закругленные углы */
+            background: rgba(0, 0, 0, 0.2); /* Настройка цвета тени */
+            z-index: -1;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Усиленная тень */
+            transform: scaleX(0.95); /* Немного сжимаем тень по горизонтали, чтобы создать эффект поднятия краев */
+        }
+
+        .exchange-title {
+            font-size: 1.2em;
+            color: #FFFFFF;
+            font-weight: bold;
+            text-align: center;
+            position: absolute;
+            top: 10px;
+            left: 54%;
+            transform: translateX(-50%);
+            white-space: nowrap; /* Запрещает перенос текста */
+        }
+
+      .draggable-container {
+    position: absolute;
+    top: 33px;
+    left: 100px;
+    width: 200px;
+    height: 30px;
+    background-color: rgba(138, 43, 226, 0.1);
+    border: 3px solid #9370DB;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding: -90px;
+    z-index: 1000;
+}
+
+        .strelka-icon {
+            position: absolute; /* Позволяет использовать свойства top, left, right, bottom */
+            width: 30px; /* Ширина логотипа */
+            height: auto; /* Сохранение пропорций логотипа */
+            top: 57px !important; /* Вертикальное смещение логотипа */
+            left: 165px !important; /* Горизонтальное смещение логотипа */
+            margin-right: 10px; /* Отступ справа от логотипа */
+            z-index: 1100;
+            transform: rotate(60deg);
+        }
+
+        .dct-icon {
+            position: relative; /* Позволяет использовать свойства top, left, right, bottom */
+            width: 30px; /* Ширина логотипа */
+            height: auto; /* Сохранение пропорций логотипа */
+            top: 3px !important; /* Вертикальное смещение логотипа */
+            left: -5px !important; /* Горизонтальное смещение логотипа */
+            margin-right: 10px; /* Отступ справа от логотипа */
+        }
+
+        .dct-label {
+            font-size: 1em; /* Размер шрифта текста */
+            color: #ffffff; /* Цвет текста */
+            font-weight: bold; /* Жирный текст */
+            margin-left: 30px; /* Отступ слева для перемещения текста вправо */
+        }
+
+        .draggable-containerA {
+            position: absolute; /* Абсолютное позиционирование для возможности перемещения */
+            top: 79px; /* Начальная позиция сверху */
+            left: 100px; /* Начальная позиция слева */
+            width: 200px; /* Ширина контейнера */
+            height: 30px; /* Высота контейнера */
+            background-color: rgba(138, 43, 226, 0.1); /* Прозрачный сиреневый фон */
+            border: 3px solid #9370DB; /* Рамка для четкого выделения */
+            border-radius: 5px; /* Закругленные углы */
+            display: flex; /* Используем Flexbox для размещения логотипа и текста */
+            align-items: center; /* Вертикальное выравнивание по центру */
+            padding: -90px; /* Внутренние отступы */
+            z-index: 1000; /* Размещение элемента выше других */
+        }
+
+        .dct-icon {
+            position: relative; /* Позволяет использовать свойства top, left, right, bottom */
+            width: 25px; /* Ширина логотипа */
+            height: auto; /* Сохранение пропорций логотипа */
+            top: 1px !important; /* Вертикальное смещение логотипа */
+            left: -1px !important; /* Горизонтальное смещение логотипа */
+            margin-right: 10px; /* Отступ справа от логотипа */
+        }
+
+        .dct-label {
+            font-size: 1em; /* Размер шрифта текста */
+            color: #ffffff; /* Цвет текста */
+            font-weight: bold; /* Жирный текст */
+            margin-left: 30px; /* Отступ слева для перемещения текста вправо */
+        }
+
+        .improve-buttonA {
+            position: absolute; /* Абсолютное позиционирование для независимого перемещения */
+            top: 129px; /* Начальная позиция сверху (можно регулировать) */
+            left: 20px; /* Начальная позиция слева (можно регулировать) */
+            padding: 5px 15px; /* Внутренние отступы для кнопки */
+            background-color: #9370DB; /* Сиреневый фон */
+            color: #ffffff; /* Цвет текста */
+            border: none; /* Без рамки */
+            border-radius: 5px; /* Закругленные углы */
+            font-size: 14px; /* Размер шрифта */
+            cursor: pointer; /* Курсор в виде руки при наведении */
+            z-index: 1200; /* Размещение выше других элементов */
+            text-align: center; /* Выравнивание текста по центру */
+        }
+
+        .improve-buttonA:hover {
+            background-color: #7A1CB1; /* Темнее сиреневый цвет при наведении */
+        }
+
+        .improve-buttonB {
+            position: absolute; /* Абсолютное позиционирование для независимого перемещения */
+            top: 129px; /* Начальная позиция сверху (можно регулировать) */
+            left: 190px; /* Начальная позиция слева (можно регулировать) */
+            padding: 5px 20px; /* Внутренние отступы для кнопки */
+            background-color: #9370DB; /* Сиреневый фон */
+            color: #ffffff; /* Цвет текста */
+            border: none; /* Без рамки */
+            border-radius: 5px; /* Закругленные углы */
+            font-size: 14px; /* Размер шрифта */
+            cursor: pointer; /* Курсор в виде руки при наведении */
+            z-index: 1200; /* Размещение выше других элементов */
+            text-align: center; /* Выравнивание текста по центру */
+        }
+
+        .improve-buttonB:hover {
+            background-color: #7A1CB1; /* Темнее сиреневый цвет при наведении */
+        }

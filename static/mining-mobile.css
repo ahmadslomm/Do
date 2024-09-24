@@ -1,0 +1,116 @@
+/* Для маленьких телефонов (меньше 320px) */
+@media only screen and (max-width: 320px) {
+  body {
+    font-size: 12px;
+    padding: 5px;
+  }
+
+  .container {
+    padding: 10px;
+    width: 100%;
+    min-height: 100vh; /* Занимает всю доступную высоту */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .generator-section, .exchange-section, .generateUSDT-section {
+    width: 100%;
+    max-width: 300px;
+    padding: 30px;
+    min-height: 200px; /* Минимальная высота секций */
+  }
+
+  button, .start-mining {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+}
+
+/* Для больших телефонов (от 321px до 767px) */
+@media only screen and (min-width: 321px) and (max-width: 767px) {
+  body {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .container {
+    padding: 40px;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .generator-section, .exchange-section, .generateUSDT-section {
+    width: 100%;
+    max-width: 350px;
+    padding: 40px;
+    min-height: 250px;
+  }
+
+  button, .start-mining {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+}
+
+/* Для планшетов (от 768px до 1024px) */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  body {
+    font-size: 16px;
+    padding: 15px;
+  }
+
+  .container {
+    padding: 50px;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .generator-section, .exchange-section, .generateUSDT-section {
+    width: 100%;
+    max-width: 450px;
+    padding: 50px;
+    min-height: 300px;
+  }
+
+  button, .start-mining {
+    font-size: 16px;
+    padding: 15px 30px;
+  }
+}
+
+/* Для ПК (от 1024px и больше) */
+@media only screen and (min-width: 1024px) {
+  body {
+    font-size: 18px;
+    padding: 20px;
+  }
+
+  .container {
+    max-width: 1000px;
+    padding: 100px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .generator-section, .exchange-section, .generateUSDT-section {
+    width: 100%;
+    max-width: 600px;
+    padding: 60px;
+    min-height: 350px;
+  }
+
+  button, .start-mining {
+    font-size: 18px;
+    padding: 20px 40px;
+  }
+}
+

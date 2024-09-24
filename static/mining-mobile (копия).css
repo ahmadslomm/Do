@@ -1,0 +1,65 @@
+@media (max-width: 768px) {
+   html, body {
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-size: contain;
+}
+
+.container {
+    padding: 40px !important;
+    width: 98% !important;
+    height: -5px !important;
+    max-width: 100% !important;
+    margin: 0px auto !important; /* Центрирование контейнера */
+}
+ 
+    .generator-section {
+        padding: 15px;
+        margin-top: 10px;
+        border-radius: 20px; /* Уменьшим радиус для мобильных устройств */
+        margin-bottom: 430px !important;
+        width: 100%; /* Установим ширину на 100% от контейнера */
+        margin-left: 0; /* Центрирование для мобильных устройств */
+        margin-right: 0 !important; /* Центрирование для мобильных устройств */
+        box-shadow: inset 0px 5px 10px rgba(0, 0, 0, 0.2), /* Уменьшенная тень для мобильных устройств */
+                    inset 0px -5px 10px rgba(0, 0, 0, 0.2); 
+    }
+
+    .exchange-section {
+        padding: 60px;
+        border-radius: 20px; /* Уменьшим радиус для мобильных устройств */
+        margin-bottom: 100px !important;
+        margin-top: -400px !important;
+        width: 71%; /* Установим ширину на 100% от контейнера */
+        margin-left: 0; /* Центрирование для мобильных устройств */
+        margin-right: 0 !important; /* Центрирование для мобильных устройств */
+        box-shadow: inset 0px 5px 10px rgba(0, 0, 0, 0.2), /* Уменьшенная тень для мобильных устройств */
+                    inset 0px -5px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .generateUSDT-section {
+        padding: 45px;
+        border-radius: 20px; /* Уменьшим радиус для мобильных устройств */
+        margin-bottom: 150px !important;
+        margin-top: -60px !important; /* Уменьшим отступ сверху */
+        width: 80%; /* Установим ширину на 100% от контейнера */
+        margin-left: 0;
+        margin-right: 0;
+        box-shadow: inset 0px 5px 10px rgba(0, 0, 0, 0.2), /* Уменьшенная тень для мобильных устройств */
+                    inset 0px -5px 10px rgba(0, 0, 0, 0.2);
+        top: 0; /* Убираем смещение */
+    }
+.balance-click {
+        margin-top: 50px !important;
+        margin-left: 0;
+        font-size: 1em;
+    }
+/* Общие стили для всех кнопок */
+.improve-button, .improve-buttonA, .improve-buttonB, .improve-buttonC, .improve-buttonD {
+    width: 30%; /* Установим одинаковую ширину кнопок */
+    margin: 5px; /* Добавим небольшой отступ между кнопками */
+    padding: 10px; /* Внутренний отступ */
+    font-size: 14px;
+}
+
+

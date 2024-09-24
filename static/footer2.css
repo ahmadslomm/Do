@@ -1,0 +1,101 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('/static/img/fon.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 20px;
+    padding: 20px;
+    width: 95%;
+    max-width: 500px;
+    background: rgba(0, 0, 0, 0.8);
+    background: url('/static/img/6.png') no-repeat center center;
+    background-size: cover;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 15px 0;
+    background-color: rgba(41, 43, 44, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+    margin-top: 20px;
+}
+
+.footer .custom-button {
+    background-color: #292b2c;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    color: #fff;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+.footer .custom-button img {
+    width: 50%;
+    height: auto;
+}
+
+.footer .custom-button:hover {
+    transform: scale(1.1);
+    background-color: #383838;
+}
+
+.footer .label {
+    font-size: 0.8em;
+    margin-top: 5px;
+    color: #fff;
+}
+
+@media (max-width: 480px) {
+    .footer {
+        height: 60px; /* Уменьшенная высота футера для мобильных устройств */
+    }
+
+    .footer .custom-button {
+        width: 60px;
+        height: 60px;
+        font-size: 1em;
+    }
+
+    .footer .label {
+        font-size: 0.8em;
+    }
+
+    .balance-container img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .balance-text {
+        font-size: 0.9em;
+    }
+}
+
