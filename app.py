@@ -20,7 +20,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-TELEGRAM_TOKEN = '7196104221:AAEgvQfa2YEvB-WL1BBX3K_CM8Tev1bkoSs'
+TELEGRAM_TOKEN = 'Token'
 
 class User(db.Model):
     __tablename__ = 'user'
